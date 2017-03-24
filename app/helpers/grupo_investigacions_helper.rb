@@ -1,0 +1,2 @@
+module GrupoInvestigacionsHelper
+end

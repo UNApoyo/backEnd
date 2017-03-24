@@ -1,0 +1,27 @@
+<%= form_for(profesor_grado) do |f| %>
+  <% if profesor_grado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profesor_grado.errors.count, "error") %> prohibited this profesor_grado from being saved:</h2>
+
+      <ul>
+      <% profesor_grado.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :profesor_id %>
+    <%= f.text_field :profesor_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :trabajo_grado_id %>
+    <%= f.text_field :trabajo_grado_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

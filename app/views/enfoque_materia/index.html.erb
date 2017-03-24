@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Enfoque Materia</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Enfoque</th>
+      <th>Materia</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @enfoque_materia.each do |enfoque_materium| %>
+      <tr>
+        <td><%= enfoque_materium.enfoque %></td>
+        <td><%= enfoque_materium.materia %></td>
+        <td><%= link_to 'Show', enfoque_materium %></td>
+        <td><%= link_to 'Edit', edit_enfoque_materium_path(enfoque_materium) %></td>
+        <td><%= link_to 'Destroy', enfoque_materium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Enfoque Materium', new_enfoque_materium_path %>

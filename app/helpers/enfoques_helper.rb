@@ -1,0 +1,2 @@
+module EnfoquesHelper
+end
