@@ -1,4 +1,4 @@
 class MateriaInvestigacion < ApplicationRecord
-  belongs_to :materia
-  belongs_to :grupo_investigacion
+  has_many :materium
+  has_many :grupo_investigacion
 end

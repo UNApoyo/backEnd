@@ -1,4 +1,4 @@
 class CarreraMaterium < ApplicationRecord
-  belongs_to :carrera
-  belongs_to :materia
+  has_many :carrera
+  has_many :materia
 end

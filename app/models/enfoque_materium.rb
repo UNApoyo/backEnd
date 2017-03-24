@@ -1,4 +1,4 @@
 class EnfoqueMaterium < ApplicationRecord
-  belongs_to :enfoque
-  belongs_to :materia
+  has_many :enfoque
+  has_many :materium
 end

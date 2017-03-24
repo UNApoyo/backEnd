@@ -1,4 +1,4 @@
 class CarreraInvestigacion < ApplicationRecord
-  belongs_to :carrera
-  belongs_to :grupo_investigacion
+  has_many :carrera
+  has_many :grupo_investigacion
 end
