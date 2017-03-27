@@ -3,6 +3,6 @@ class Profesor < ApplicationRecord
 	has_many :grupo_de_investigacion,through :profesor_investigacion
 	has_many :profesor_grado
 	has_many :trabajo_de_grado,through :profesor_grado
-	
-	validates :name,:description,presence: true
+
+	validates :nombre,:description,presence: true
 end
