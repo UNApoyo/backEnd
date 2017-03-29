@@ -3,6 +3,6 @@ class Enfoque < ApplicationRecord
 	has_many :enfoque_materium
 	has_many :materium, through :enfoque_materium
 
-	validates :nombre,:description,presence: true
+	validates :nombre,presence: true
     validates :nombre, uniqueness: true
 end

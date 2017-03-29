@@ -4,5 +4,5 @@ class Profesor < ApplicationRecord
 	has_many :profesor_grado
 	has_many :trabajo_de_grado,through :profesor_grado
 
-	validates :nombre,:description,presence: true
+	validates :nombre,presence: true
 end
