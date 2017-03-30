@@ -7,6 +7,13 @@ class Materium < ApplicationRecord
 	has_many :grupo_investigacion,through :materia_investigacion
 
 	validates :nombre,presence: true
-    validates :nombre, uniqueness: true
+  validates :nombre, uniqueness: true
+
+	def porcentaje_disciplinares
+		numDisc = Materium.where("tipo = diciplinar").group(:tipo).count.length
+		numApproved = MateriasTomadas.where("tipo = diciplinar").group(:tipo).count.length
+		return numApproved/numDisc*100
+	end
+
 
 end
