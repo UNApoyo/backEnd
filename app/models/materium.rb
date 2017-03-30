@@ -35,4 +35,17 @@ class Materium < ApplicationRecord
 			prof_name = profesors.where(:profesor_id = prof_id).select("nombre")
 			return prof_name
 	end
+	def get_promedio_disc
+			calificaciones = historia_academicas.joins(:materia).where("materia.tipo = disciplinar").average("historia_academicas.calificacion")
+			return calificaciones
+	end
+	def get_promedio_fun
+			calificaciones = historia_academicas.joins(:materia).where("materia.tipo = fundamentacion").average("historia_academicas.calificacion")
+			return calificaciones
+	end
+	def get_promedio_lib
+			calificaciones = historia_academicas.joins(:materia).where("materia.tipo = libre").average("historia_academicas.calificacion")
+			return calificaciones
+	end
+
 end
