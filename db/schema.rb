@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323041519) do
+ActiveRecord::Schema.define(version: 20170330050947) do
 
   create_table "carrera_investigacions", force: :cascade do |t|
     t.integer  "carrera_id"
@@ -52,10 +52,32 @@ ActiveRecord::Schema.define(version: 20170323041519) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "estudiantes", force: :cascade do |t|
+    t.integer  "porcentaje_carrera"
+    t.integer  "creditos_disponibles"
+    t.integer  "creditos_aprobados"
+    t.integer  "creditos_inscritos"
+    t.integer  "creditos_pendientes"
+    t.integer  "materia_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["materia_id"], name: "index_estudiantes_on_materia_id"
+  end
+
   create_table "grupo_investigacions", force: :cascade do |t|
     t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "historia_academicas", force: :cascade do |t|
+    t.decimal  "calificacion"
+    t.integer  "materia_id"
+    t.integer  "estudiante_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["estudiante_id"], name: "index_historia_academicas_on_estudiante_id"
+    t.index ["materia_id"], name: "index_historia_academicas_on_materia_id"
   end
 
   create_table "materia", force: :cascade do |t|
@@ -64,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170323041519) do
     t.string   "tipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "area"
   end
 
   create_table "materia_investigacions", force: :cascade do |t|

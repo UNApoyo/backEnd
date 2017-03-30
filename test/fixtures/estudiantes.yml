@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  porcentaje_carrera: 1
+  creditos_disponibles: 1
+  creditos_aprobados: 1
+  creditos_inscritos: 1
+  creditos_pendientes: 1
+  materia: one
+
+two:
+  porcentaje_carrera: 1
+  creditos_disponibles: 1
+  creditos_aprobados: 1
+  creditos_inscritos: 1
+  creditos_pendientes: 1
+  materia: two

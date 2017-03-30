@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Porcentaje carrera:</strong>
+  <%= @estudiante.porcentaje_carrera %>
+</p>
+
+<p>
+  <strong>Creditos disponibles:</strong>
+  <%= @estudiante.creditos_disponibles %>
+</p>
+
+<p>
+  <strong>Creditos aprobados:</strong>
+  <%= @estudiante.creditos_aprobados %>
+</p>
+
+<p>
+  <strong>Creditos inscritos:</strong>
+  <%= @estudiante.creditos_inscritos %>
+</p>
+
+<p>
+  <strong>Creditos pendientes:</strong>
+  <%= @estudiante.creditos_pendientes %>
+</p>
+
+<p>
+  <strong>Materia:</strong>
+  <%= @estudiante.materia %>
+</p>
+
+<%= link_to 'Edit', edit_estudiante_path(@estudiante) %> |
+<%= link_to 'Back', estudiantes_path %>

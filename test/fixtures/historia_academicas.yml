@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  calificacion: 9.99
+  materia: one
+  estudiante: one
+
+two:
+  calificacion: 9.99
+  materia: two
+  estudiante: two
