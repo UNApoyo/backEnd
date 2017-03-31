@@ -5,7 +5,7 @@ class Materium < ApplicationRecord
 	has_many :enfoque,through: :enfoque_materium
 	has_many :materia_investigacion
 	has_many :grupo_investigacion,through :materia_investigacion
-
+	#add tipo?
 	validates :nombre,presence: true
   validates :nombre, uniqueness: true
 
