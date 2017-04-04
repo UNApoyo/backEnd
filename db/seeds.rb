@@ -1,7 +1,4 @@
-=begin
-namespace :db do
-  desc "Fill database"
-  task :populate => :environment do
+
     Carrera.create(nombre:'Ingenieria Agricola',creditos:180)
     Carrera.create(nombre:'Ingenieria Civil',creditos:180)
     Carrera.create(nombre:'Ingenieria de Sistema y Computacion',creditos:165)
@@ -21,7 +18,7 @@ namespace :db do
     Materium.create(nombre:'Calculo en Varias Variables',creditos: 4,tipo:'Fundamentacion')
     Materium.create(nombre:'Calculo Vectorial',creditos: 4,tipo:'Fundamentacion')
     Materium.create(nombre:'Ecuaciones Diferenciales',creditos: 4,tipo:'Fundamentacion')
-    Materium.create(nombre:'Calculo de Ecuaciones Diferenciales',4,tipo:'Fundamentacion')
+    Materium.create(nombre:'Calculo de Ecuaciones Diferenciales',creditos: 4,tipo:'Fundamentacion')
     Materium.create(nombre:'Probabilidad',creditos: 4,tipo:'Fundamentacion')
     Materium.create(nombre:'Inferencia Estadistica',creditos: 4,tipo:'Fundamentacion')
     Materium.create(nombre:'Fundamentos de Mecanica',creditos: 4,tipo:'Fundamentacion')
@@ -43,7 +40,7 @@ namespace :db do
 #por el momento
 #se personalizara el Faker para que haga random de nombres de materias, grupos, profesores etc.
 
-
+=begin
 task :sample_data => :environment do
 require 'faker'
 end
