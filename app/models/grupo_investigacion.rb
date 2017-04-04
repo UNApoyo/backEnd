@@ -8,4 +8,14 @@ class GrupoInvestigacion < ApplicationRecord
 
 	validates :nombre,:description,presence: true
     validates :nombre, uniqueness: true
+
+
+		def get_grupo_investigacion_carrera(id_carrera)
+				grupos = carrera_investigacion.where(:carrera_id = id_carrera).select("grupo_investigacion_id")
+				name_grupos = grupo_investigacion.where(nombre: grupos)
+				return name_grupos
+		end
+
+
+
 end
