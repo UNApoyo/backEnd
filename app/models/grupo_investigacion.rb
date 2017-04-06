@@ -1,0 +1,2 @@
+class GrupoInvestigacion < ApplicationRecord
+end

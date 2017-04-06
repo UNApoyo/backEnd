@@ -1,0 +1,2 @@
+class Enfoque < ApplicationRecord
+end

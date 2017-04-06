@@ -1,0 +1,2 @@
+class TrabajoGrado < ApplicationRecord
+end
