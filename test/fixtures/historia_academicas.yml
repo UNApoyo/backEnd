@@ -2,10 +2,10 @@
 
 one:
   calificacion: 9.99
-  materia: one
+  asignatura: one
   estudiante: one
 
 two:
   calificacion: 9.99
-  materia: two
+  asignatura: two
   estudiante: two

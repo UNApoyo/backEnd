@@ -6,43 +6,33 @@ class ProfesorInvestigacionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get profesor_investigacions_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_profesor_investigacion_url
+    get profesor_investigacions_url, as: :json
     assert_response :success
   end
 
   test "should create profesor_investigacion" do
     assert_difference('ProfesorInvestigacion.count') do
-      post profesor_investigacions_url, params: { profesor_investigacion: { grupo_investigacion_id: @profesor_investigacion.grupo_investigacion_id, profesor_id: @profesor_investigacion.profesor_id } }
+      post profesor_investigacions_url, params: { profesor_investigacion: { investigacion_id: @profesor_investigacion.investigacion_id, profesor_id: @profesor_investigacion.profesor_id } }, as: :json
     end
 
-    assert_redirected_to profesor_investigacion_url(ProfesorInvestigacion.last)
+    assert_response 201
   end
 
   test "should show profesor_investigacion" do
-    get profesor_investigacion_url(@profesor_investigacion)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_profesor_investigacion_url(@profesor_investigacion)
+    get profesor_investigacion_url(@profesor_investigacion), as: :json
     assert_response :success
   end
 
   test "should update profesor_investigacion" do
-    patch profesor_investigacion_url(@profesor_investigacion), params: { profesor_investigacion: { grupo_investigacion_id: @profesor_investigacion.grupo_investigacion_id, profesor_id: @profesor_investigacion.profesor_id } }
-    assert_redirected_to profesor_investigacion_url(@profesor_investigacion)
+    patch profesor_investigacion_url(@profesor_investigacion), params: { profesor_investigacion: { investigacion_id: @profesor_investigacion.investigacion_id, profesor_id: @profesor_investigacion.profesor_id } }, as: :json
+    assert_response 200
   end
 
   test "should destroy profesor_investigacion" do
     assert_difference('ProfesorInvestigacion.count', -1) do
-      delete profesor_investigacion_url(@profesor_investigacion)
+      delete profesor_investigacion_url(@profesor_investigacion), as: :json
     end
 
-    assert_redirected_to profesor_investigacions_url
+    assert_response 204
   end
 end

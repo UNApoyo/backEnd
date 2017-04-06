@@ -10,7 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331163542) do
+ActiveRecord::Schema.define(version: 20170406010851) do
+
+  create_table "area_investigacions", force: :cascade do |t|
+    t.integer  "area_id"
+    t.integer  "grupo_investigacion_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["area_id"], name: "index_area_investigacions_on_area_id"
+    t.index ["grupo_investigacion_id"], name: "index_area_investigacions_on_grupo_investigacion_id"
+  end
+
+  create_table "areas", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "materia_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["materia_id"], name: "index_areas_on_materia_id"
+  end
+
+  create_table "asignaturas", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "creditos"
+    t.string   "tipologia"
+    t.integer  "codigo"
+    t.integer  "prerequisito_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["prerequisito_id"], name: "index_asignaturas_on_prerequisito_id"
+  end
+
+  create_table "carrera_asignaturas", force: :cascade do |t|
+    t.integer  "carrera_id"
+    t.integer  "asignatura_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["asignatura_id"], name: "index_carrera_asignaturas_on_asignatura_id"
+    t.index ["carrera_id"], name: "index_carrera_asignaturas_on_carrera_id"
+  end
 
   create_table "carrera_investigacions", force: :cascade do |t|
     t.integer  "carrera_id"
@@ -21,30 +58,27 @@ ActiveRecord::Schema.define(version: 20170331163542) do
     t.index ["grupo_investigacion_id"], name: "index_carrera_investigacions_on_grupo_investigacion_id"
   end
 
-  create_table "carrera_materia", force: :cascade do |t|
-    t.integer  "carrera_id"
-    t.integer  "materia_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["carrera_id"], name: "index_carrera_materia_on_carrera_id"
-    t.index ["materia_id"], name: "index_carrera_materia_on_materia_id"
-  end
-
   create_table "carreras", force: :cascade do |t|
     t.string   "nombre"
     t.integer  "creditos"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer  "codigo"
+    t.integer  "enfoque_id"
+    t.integer  "trabajo_grado_id"
+    t.integer  "estudiante_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["enfoque_id"], name: "index_carreras_on_enfoque_id"
+    t.index ["estudiante_id"], name: "index_carreras_on_estudiante_id"
+    t.index ["trabajo_grado_id"], name: "index_carreras_on_trabajo_grado_id"
   end
 
-  create_table "enfoque_materia", force: :cascade do |t|
+  create_table "enfoque_asignaturas", force: :cascade do |t|
     t.integer  "enfoque_id"
-    t.integer  "materia_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["enfoque_id"], name: "index_enfoque_materia_on_enfoque_id"
-    t.index ["materia_id"], name: "index_enfoque_materia_on_materia_id"
+    t.integer  "asignatura_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["asignatura_id"], name: "index_enfoque_asignaturas_on_asignatura_id"
+    t.index ["enfoque_id"], name: "index_enfoque_asignaturas_on_enfoque_id"
   end
 
   create_table "enfoques", force: :cascade do |t|
@@ -59,10 +93,8 @@ ActiveRecord::Schema.define(version: 20170331163542) do
     t.integer  "creditos_aprobados"
     t.integer  "creditos_inscritos"
     t.integer  "creditos_pendientes"
-    t.integer  "materia_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.index ["materia_id"], name: "index_estudiantes_on_materia_id"
   end
 
   create_table "grupo_investigacions", force: :cascade do |t|
@@ -73,31 +105,19 @@ ActiveRecord::Schema.define(version: 20170331163542) do
 
   create_table "historia_academicas", force: :cascade do |t|
     t.decimal  "calificacion"
-    t.integer  "materia_id"
+    t.integer  "asignatura_id"
     t.integer  "estudiante_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["asignatura_id"], name: "index_historia_academicas_on_asignatura_id"
     t.index ["estudiante_id"], name: "index_historia_academicas_on_estudiante_id"
-    t.index ["materia_id"], name: "index_historia_academicas_on_materia_id"
   end
 
-  create_table "materia", force: :cascade do |t|
-    t.string   "nombre"
-    t.integer  "creditos"
-    t.string   "tipo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "area"
-    t.integer  "codigo"
-  end
-
-  create_table "materia_investigacions", force: :cascade do |t|
-    t.integer  "materia_id"
-    t.integer  "grupo_investigacion_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["grupo_investigacion_id"], name: "index_materia_investigacions_on_grupo_investigacion_id"
-    t.index ["materia_id"], name: "index_materia_investigacions_on_materia_id"
+  create_table "prerequisitos", force: :cascade do |t|
+    t.integer  "requisito"
+    t.integer  "requisito_de"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "profesor_grados", force: :cascade do |t|
@@ -111,16 +131,16 @@ ActiveRecord::Schema.define(version: 20170331163542) do
 
   create_table "profesor_investigacions", force: :cascade do |t|
     t.integer  "profesor_id"
-    t.integer  "grupo_investigacion_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["grupo_investigacion_id"], name: "index_profesor_investigacions_on_grupo_investigacion_id"
+    t.integer  "investigacion_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["investigacion_id"], name: "index_profesor_investigacions_on_investigacion_id"
     t.index ["profesor_id"], name: "index_profesor_investigacions_on_profesor_id"
   end
 
   create_table "profesors", force: :cascade do |t|
     t.string   "nombre"
-    t.integer  "oficina"
+    t.string   "info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

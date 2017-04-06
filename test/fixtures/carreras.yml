@@ -3,7 +3,15 @@
 one:
   nombre: MyString
   creditos: 1
+  codigo: 1
+  enfoque: one
+  trabajo_grado: one
+  estudiante: one
 
 two:
   nombre: MyString
   creditos: 1
+  codigo: 1
+  enfoque: two
+  trabajo_grado: two
+  estudiante: two

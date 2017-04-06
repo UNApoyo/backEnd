@@ -6,43 +6,33 @@ class EnfoquesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get enfoques_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_enfoque_url
+    get enfoques_url, as: :json
     assert_response :success
   end
 
   test "should create enfoque" do
     assert_difference('Enfoque.count') do
-      post enfoques_url, params: { enfoque: { nombre: @enfoque.nombre } }
+      post enfoques_url, params: { enfoque: { nombre: @enfoque.nombre } }, as: :json
     end
 
-    assert_redirected_to enfoque_url(Enfoque.last)
+    assert_response 201
   end
 
   test "should show enfoque" do
-    get enfoque_url(@enfoque)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_enfoque_url(@enfoque)
+    get enfoque_url(@enfoque), as: :json
     assert_response :success
   end
 
   test "should update enfoque" do
-    patch enfoque_url(@enfoque), params: { enfoque: { nombre: @enfoque.nombre } }
-    assert_redirected_to enfoque_url(@enfoque)
+    patch enfoque_url(@enfoque), params: { enfoque: { nombre: @enfoque.nombre } }, as: :json
+    assert_response 200
   end
 
   test "should destroy enfoque" do
     assert_difference('Enfoque.count', -1) do
-      delete enfoque_url(@enfoque)
+      delete enfoque_url(@enfoque), as: :json
     end
 
-    assert_redirected_to enfoques_url
+    assert_response 204
   end
 end

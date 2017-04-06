@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
+  resources :area_investigacions
+  resources :areas
   resources :historia_academicas
-  resources :estudiantes
   resources :carrera_investigacions
-  resources :carrera_materia
+  resources :carrera_asignaturas
   resources :carreras
-  resources :profesor_grados
-  resources :trabajo_grados
+  resources :estudiantes
   resources :profesor_investigacions
-  resources :profesors
-  resources :materia_investigacions
   resources :grupo_investigacions
-  resources :enfoque_materia
-  resources :materia
+  resources :profesor_grados
+  resources :profesors
+  resources :trabajo_grados
+  resources :enfoque_asignaturas
   resources :enfoques
+  resources :asignaturas
+  resources :prerequisitos
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

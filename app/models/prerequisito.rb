@@ -1,0 +1,2 @@
+class Prerequisito < ApplicationRecord
+end

@@ -2,8 +2,8 @@
 
 one:
   nombre: MyString
-  oficina: 1
+  info: MyString
 
 two:
   nombre: MyString
-  oficina: 1
+  info: MyString

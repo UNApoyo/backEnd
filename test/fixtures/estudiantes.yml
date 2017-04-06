@@ -6,7 +6,6 @@ one:
   creditos_aprobados: 1
   creditos_inscritos: 1
   creditos_pendientes: 1
-  materia: one
 
 two:
   porcentaje_carrera: 1
@@ -14,4 +13,3 @@ two:
   creditos_aprobados: 1
   creditos_inscritos: 1
   creditos_pendientes: 1
-  materia: two

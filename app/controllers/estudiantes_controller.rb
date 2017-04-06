@@ -1,64 +1,41 @@
 class EstudiantesController < ApplicationController
-  before_action :set_estudiante, only: [:show, :edit, :update, :destroy]
+  before_action :set_estudiante, only: [:show, :update, :destroy]
 
   # GET /estudiantes
-  # GET /estudiantes.json
   def index
     @estudiantes = Estudiante.all
+
+    render json: @estudiantes
   end
 
   # GET /estudiantes/1
-  # GET /estudiantes/1.json
   def show
-  end
-
-  # GET /estudiantes/new
-  def new
-    @estudiante = Estudiante.new
-  end
-
-  # GET /estudiantes/1/edit
-  def edit
+    render json: @estudiante
   end
 
   # POST /estudiantes
-  # POST /estudiantes.json
   def create
     @estudiante = Estudiante.new(estudiante_params)
 
-    respond_to do |format|
-      if @estudiante.save
-        format.html { redirect_to @estudiante, notice: 'Estudiante was successfully created.' }
-        format.json { render :show, status: :created, location: @estudiante }
-      else
-        format.html { render :new }
-        format.json { render json: @estudiante.errors, status: :unprocessable_entity }
-      end
+    if @estudiante.save
+      render json: @estudiante, status: :created, location: @estudiante
+    else
+      render json: @estudiante.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /estudiantes/1
-  # PATCH/PUT /estudiantes/1.json
   def update
-    respond_to do |format|
-      if @estudiante.update(estudiante_params)
-        format.html { redirect_to @estudiante, notice: 'Estudiante was successfully updated.' }
-        format.json { render :show, status: :ok, location: @estudiante }
-      else
-        format.html { render :edit }
-        format.json { render json: @estudiante.errors, status: :unprocessable_entity }
-      end
+    if @estudiante.update(estudiante_params)
+      render json: @estudiante
+    else
+      render json: @estudiante.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /estudiantes/1
-  # DELETE /estudiantes/1.json
   def destroy
     @estudiante.destroy
-    respond_to do |format|
-      format.html { redirect_to estudiantes_url, notice: 'Estudiante was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -67,8 +44,8 @@ class EstudiantesController < ApplicationController
       @estudiante = Estudiante.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow a trusted parameter "white list" through.
     def estudiante_params
-      params.require(:estudiante).permit(:porcentaje_carrera, :creditos_disponibles, :creditos_aprobados, :creditos_inscritos, :creditos_pendientes, :materia_id)
+      params.require(:estudiante).permit(:porcentaje_carrera, :creditos_disponibles, :creditos_aprobados, :creditos_inscritos, :creditos_pendientes)
     end
 end

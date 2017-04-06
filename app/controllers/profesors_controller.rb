@@ -1,64 +1,41 @@
 class ProfesorsController < ApplicationController
-  before_action :set_profesor, only: [:show, :edit, :update, :destroy]
+  before_action :set_profesor, only: [:show, :update, :destroy]
 
   # GET /profesors
-  # GET /profesors.json
   def index
     @profesors = Profesor.all
+
+    render json: @profesors
   end
 
   # GET /profesors/1
-  # GET /profesors/1.json
   def show
-  end
-
-  # GET /profesors/new
-  def new
-    @profesor = Profesor.new
-  end
-
-  # GET /profesors/1/edit
-  def edit
+    render json: @profesor
   end
 
   # POST /profesors
-  # POST /profesors.json
   def create
     @profesor = Profesor.new(profesor_params)
 
-    respond_to do |format|
-      if @profesor.save
-        format.html { redirect_to @profesor, notice: 'Profesor was successfully created.' }
-        format.json { render :show, status: :created, location: @profesor }
-      else
-        format.html { render :new }
-        format.json { render json: @profesor.errors, status: :unprocessable_entity }
-      end
+    if @profesor.save
+      render json: @profesor, status: :created, location: @profesor
+    else
+      render json: @profesor.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /profesors/1
-  # PATCH/PUT /profesors/1.json
   def update
-    respond_to do |format|
-      if @profesor.update(profesor_params)
-        format.html { redirect_to @profesor, notice: 'Profesor was successfully updated.' }
-        format.json { render :show, status: :ok, location: @profesor }
-      else
-        format.html { render :edit }
-        format.json { render json: @profesor.errors, status: :unprocessable_entity }
-      end
+    if @profesor.update(profesor_params)
+      render json: @profesor
+    else
+      render json: @profesor.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /profesors/1
-  # DELETE /profesors/1.json
   def destroy
     @profesor.destroy
-    respond_to do |format|
-      format.html { redirect_to profesors_url, notice: 'Profesor was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -67,8 +44,8 @@ class ProfesorsController < ApplicationController
       @profesor = Profesor.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow a trusted parameter "white list" through.
     def profesor_params
-      params.require(:profesor).permit(:nombre, :oficina)
+      params.require(:profesor).permit(:nombre, :info)
     end
 end

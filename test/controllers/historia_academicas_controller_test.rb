@@ -6,43 +6,33 @@ class HistoriaAcademicasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get historia_academicas_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_historia_academica_url
+    get historia_academicas_url, as: :json
     assert_response :success
   end
 
   test "should create historia_academica" do
     assert_difference('HistoriaAcademica.count') do
-      post historia_academicas_url, params: { historia_academica: { calificacion: @historia_academica.calificacion, estudiante_id: @historia_academica.estudiante_id, materia_id: @historia_academica.materia_id } }
+      post historia_academicas_url, params: { historia_academica: { asignatura_id: @historia_academica.asignatura_id, calificacion: @historia_academica.calificacion, estudiante_id: @historia_academica.estudiante_id } }, as: :json
     end
 
-    assert_redirected_to historia_academica_url(HistoriaAcademica.last)
+    assert_response 201
   end
 
   test "should show historia_academica" do
-    get historia_academica_url(@historia_academica)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_historia_academica_url(@historia_academica)
+    get historia_academica_url(@historia_academica), as: :json
     assert_response :success
   end
 
   test "should update historia_academica" do
-    patch historia_academica_url(@historia_academica), params: { historia_academica: { calificacion: @historia_academica.calificacion, estudiante_id: @historia_academica.estudiante_id, materia_id: @historia_academica.materia_id } }
-    assert_redirected_to historia_academica_url(@historia_academica)
+    patch historia_academica_url(@historia_academica), params: { historia_academica: { asignatura_id: @historia_academica.asignatura_id, calificacion: @historia_academica.calificacion, estudiante_id: @historia_academica.estudiante_id } }, as: :json
+    assert_response 200
   end
 
   test "should destroy historia_academica" do
     assert_difference('HistoriaAcademica.count', -1) do
-      delete historia_academica_url(@historia_academica)
+      delete historia_academica_url(@historia_academica), as: :json
     end
 
-    assert_redirected_to historia_academicas_url
+    assert_response 204
   end
 end

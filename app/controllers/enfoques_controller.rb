@@ -1,64 +1,41 @@
 class EnfoquesController < ApplicationController
-  before_action :set_enfoque, only: [:show, :edit, :update, :destroy]
+  before_action :set_enfoque, only: [:show, :update, :destroy]
 
   # GET /enfoques
-  # GET /enfoques.json
   def index
     @enfoques = Enfoque.all
+
+    render json: @enfoques
   end
 
   # GET /enfoques/1
-  # GET /enfoques/1.json
   def show
-  end
-
-  # GET /enfoques/new
-  def new
-    @enfoque = Enfoque.new
-  end
-
-  # GET /enfoques/1/edit
-  def edit
+    render json: @enfoque
   end
 
   # POST /enfoques
-  # POST /enfoques.json
   def create
     @enfoque = Enfoque.new(enfoque_params)
 
-    respond_to do |format|
-      if @enfoque.save
-        format.html { redirect_to @enfoque, notice: 'Enfoque was successfully created.' }
-        format.json { render :show, status: :created, location: @enfoque }
-      else
-        format.html { render :new }
-        format.json { render json: @enfoque.errors, status: :unprocessable_entity }
-      end
+    if @enfoque.save
+      render json: @enfoque, status: :created, location: @enfoque
+    else
+      render json: @enfoque.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /enfoques/1
-  # PATCH/PUT /enfoques/1.json
   def update
-    respond_to do |format|
-      if @enfoque.update(enfoque_params)
-        format.html { redirect_to @enfoque, notice: 'Enfoque was successfully updated.' }
-        format.json { render :show, status: :ok, location: @enfoque }
-      else
-        format.html { render :edit }
-        format.json { render json: @enfoque.errors, status: :unprocessable_entity }
-      end
+    if @enfoque.update(enfoque_params)
+      render json: @enfoque
+    else
+      render json: @enfoque.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /enfoques/1
-  # DELETE /enfoques/1.json
   def destroy
     @enfoque.destroy
-    respond_to do |format|
-      format.html { redirect_to enfoques_url, notice: 'Enfoque was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -67,8 +44,8 @@ class EnfoquesController < ApplicationController
       @enfoque = Enfoque.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Only allow a trusted parameter "white list" through.
     def enfoque_params
-      params.require(:enfoque).permit(:nombre, :carrera_id)
+      params.require(:enfoque).permit(:nombre)
     end
 end
