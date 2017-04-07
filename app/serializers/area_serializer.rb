@@ -1,3 +1,4 @@
 class AreaSerializer < ActiveModel::Serializer
-  attributes :nombre
+  type :data
+  attributes :nombre, :materia_id
 end

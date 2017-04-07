@@ -1,3 +1,4 @@
 class ProfesorInvestigacionSerializer < ActiveModel::Serializer
+  type :data
   attributes :profesor_id, :investigacion_id
 end
