@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406010851) do
+ActiveRecord::Schema.define(version: 20170407022225) do
 
   create_table "area_investigacions", force: :cascade do |t|
     t.integer  "area_id"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20170406010851) do
     t.integer  "estudiante_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "avatar"
     t.index ["asignatura_id"], name: "index_historia_academicas_on_asignatura_id"
     t.index ["estudiante_id"], name: "index_historia_academicas_on_estudiante_id"
   end
