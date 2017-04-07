@@ -1,6 +1,6 @@
-#archivo de configuracion para carriwrwave, especificando cuenta
+#archivo de configuracion para carrierwave, especificando cuenta
 #y API key de Rackspace para usar la nube como storage
-
+=begin
 CarrierWave.configure do |config|
   config.fog_provider = "fog/rackspace/storage"   # optional, defaults to "fog"
   config.fog_credentials = {
@@ -11,3 +11,4 @@ CarrierWave.configure do |config|
   }
   config.fog_directory = 'name_of_directory'
 end
+=end

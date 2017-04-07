@@ -1,11 +1,11 @@
 class Asignatura < ApplicationRecord
-  has_many :prerequisito
-  has_many :enfoque_asignatura, dependent: :destroy
-  has_many :carrera_asignatura, dependent: :destroy
-  has_many :historia_academica, dependent: :destroy
-  has_many :enfoque, through: :enfoque_asignatura
-  has_many :carrera, through: :carrera_asignatura
-  has_many :estudiante, through: :historia_academica
+  has_many :prerequisitos
+  has_many :enfoque_asignaturas, dependent: :destroy
+  has_many :carrera_asignaturas, dependent: :destroy
+  has_many :historia_academicas, dependent: :destroy
+  has_many :enfoques, through: :enfoque_asignaturas
+  has_many :carreras, through: :carrera_asignaturas
+  has_many :estudiantes, through: :historia_academicas
 
   validates :nombre, presence: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create}
   validates :creditos, presence: true, inclusion: { in: 1..10}

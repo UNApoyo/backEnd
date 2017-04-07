@@ -1,15 +1,15 @@
 class Carrera < ApplicationRecord
-  has_many :enfoque
-  has_many :trabajo_grado
-  has_many :estudiante
-  has_many :carrera_asignatura, dependent: :destroy
-  has_many :carrera_investigacion, dependent: :destroy
-  has_many :asignatura, through: :carrera_asignatura
-  has_many :grupo_investigacion, through: :carrera_investigacion
+  has_many :enfoques
+  has_many :trabajo_grados
+  has_many :estudiantes
+  has_many :carrera_asignaturas, dependent: :destroy
+  has_many :carrera_investigacions, dependent: :destroy
+  has_many :asignaturas, through: :carrera_asignaturas
+  has_many :grupo_investigacions, through: :carrera_investigacions
 
   validates :nombre, presence: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create} #/^[a-z ,.'-]+$/i
-  validates :creditos, presence: true, inclusion: { in: 120..250}
-  validates :codigo, presence: true, inclusion: { in: 1000..3000}
+  validates :creditos, inclusion: { in: 1..115}
+  validates :codigo, inclusion: { in: 1..10}
 
 
 def self.get_all_carreras #ejemplo query sencillo

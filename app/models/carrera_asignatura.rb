@@ -1,4 +1,4 @@
 class CarreraAsignatura < ApplicationRecord
-  has_many :carrera
-  has_many :asignatura
+  has_many :carreras
+  has_many :asignaturas
 end

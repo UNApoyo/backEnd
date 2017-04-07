@@ -1,5 +1,5 @@
 class AreaInvestigacion < ApplicationRecord
-  has_many :area
-  has_many :grupo_investigacion
-  
+  has_many :areas
+  has_many :grupo_investigacions
+
 end

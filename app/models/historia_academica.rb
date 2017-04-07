@@ -1,10 +1,10 @@
 require 'fog'
 
 class HistoriaAcademica < ApplicationRecord
-  has_many  :asignatura
-  has_many :estudiante
+  has_many  :asignaturas
+  has_many :estudiantes
   mount_uploader :avatar, AvatarUploader
-  validates :calificacion, presence: true, inclusion: { in: 0..5}
+  validates :calificacion, inclusion: { in: 0..5}
 
 
 #ejemplo carga de una imagen y almacenamiento en nube Rackspace
