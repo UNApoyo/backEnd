@@ -7,7 +7,7 @@ class HistoriaAcademica < ApplicationRecord
   validates :calificacion, inclusion: { in: 0..5}
     def self.historia_asignatura
 		joins(:asignaturas).select("historia_academicas.estudiante_id,historia_academicas.calificacion_id")
-		.where(:asignaturas{asignaturas.codigo:"asignatura_id"})
+		.where(:asignaturas{codigo:"asignatura_id"})
 	end
 	
 	
