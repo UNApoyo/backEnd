@@ -19,7 +19,7 @@ class HistoriaAcademica < ApplicationRecord
 	end
 	
 	def self.find_id_sort
-		self.select("asignatura_id" :desc)
+		self.select("asignatura_id")
 	end
 
 #ejemplo carga de una imagen y almacenamiento en nube Rackspace
