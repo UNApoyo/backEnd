@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20170407022225) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "nombre"
-    t.integer  "materia_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,9 +33,10 @@ ActiveRecord::Schema.define(version: 20170407022225) do
     t.string   "tipologia"
     t.integer  "codigo"
     t.integer  "prerequisito_id"
+    t.integer  "area_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-	t.index ["area_id"], name: "index_asignaturas_ on_area_id"
+    t.index ["area_id"], name: "index_asignaturas_on_area_id"
     t.index ["prerequisito_id"], name: "index_asignaturas_on_prerequisito_id"
   end
 

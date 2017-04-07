@@ -5,6 +5,14 @@ class HistoriaAcademica < ApplicationRecord
   has_many :estudiantes
   mount_uploader :avatar, AvatarUploader
   validates :calificacion, inclusion: { in: 0..5}
+    def self.historia_asignatura
+		joins(:asignaturas).select("historia_academicas.estudiante_id,historia_academicas.calificacion_id")
+		.where(:asignaturas{asignaturas.codigo:historia_academicas.asignatura_id}).uniq
+	end
+	
+	def self.historia_estudiante
+		joins(:estudiantes)
+	end
 
 
 #ejemplo carga de una imagen y almacenamiento en nube Rackspace
