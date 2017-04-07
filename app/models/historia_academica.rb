@@ -6,8 +6,8 @@ class HistoriaAcademica < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   validates :calificacion, inclusion: { in: 0..5}
     def self.historia_asignatura
-		joins(:asignaturas).select("historia_academicas.estudiante_id,historia_academicas.calificacion_id")
-		.where(asignaturas:{codigo:"asignatura_id"})
+		joins(:asignaturas).select("historia_academicas.estudiante_id,historia_academicas.calificacion")
+		.where(asignaturas:{codigo:"historia_academicas.asignatura_id"})
 	end
 	
 	

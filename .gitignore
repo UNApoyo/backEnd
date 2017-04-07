@@ -19,3 +19,4 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+db/migrate/20170407142226_add_asignatura_ref_to_historia_academica.rb
