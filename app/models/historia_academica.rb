@@ -23,11 +23,11 @@ class HistoriaAcademica < ApplicationRecord
 	end
 	
 	def self.best_calificacion
-		self.select("calificacion > 4")
+		self.select("calificacion").where("calificacion > 4")
 	end
 	
 	def self.worst_calificacion
-		self.select("calificacion < 3")
+		self.select("calificacion").where("calificacion < 3")
 	end
 
 #ejemplo carga de una imagen y almacenamiento en nube Rackspace
