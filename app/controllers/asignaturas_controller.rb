@@ -46,6 +46,6 @@ class AsignaturasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def asignatura_params
-      params.require(:asignatura).permit(:nombre, :creditos, :tipologia, :codigo, :prerequisito_id)
+      params.require(:asignatura).permit(:nombre, :creditos, :tipologia, :codigo, :prerequisito_id, :area_id)
     end
 end

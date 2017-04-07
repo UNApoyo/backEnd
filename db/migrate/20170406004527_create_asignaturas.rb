@@ -6,6 +6,7 @@ class CreateAsignaturas < ActiveRecord::Migration[5.0]
       t.string :tipologia
       t.integer :codigo
       t.references :prerequisito, foreign_key: true
+	  t.references :area, foreign_key: true
 
       t.timestamps
     end

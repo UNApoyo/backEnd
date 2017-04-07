@@ -46,6 +46,6 @@ class AreasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def area_params
-      params.require(:area).permit(:nombre, :materia_id)
+      params.require(:area).permit(:nombre)
     end
 end

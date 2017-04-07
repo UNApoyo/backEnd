@@ -1,4 +1,4 @@
 class ProfesorInvestigacion < ApplicationRecord
-  belongs_to :profesor
-  #belongs_to :grupo_investigacion
+  has_many :profesor
+  has_many :grupo_investigacion
 end

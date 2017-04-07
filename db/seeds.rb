@@ -86,8 +86,7 @@ end
 def make_area
   10.times do |n|
     nombre = Faker::Name.area
-    materia_id = Faker::Name.materia_id
-    Area.create!(nombre: nombre, materia_id: materia_id)
+    Area.create!(nombre: nombre)
   end
 end
 

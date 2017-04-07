@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20170407022225) do
     t.integer  "materia_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["materia_id"], name: "index_areas_on_materia_id"
   end
 
   create_table "asignaturas", force: :cascade do |t|
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170407022225) do
     t.integer  "prerequisito_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+	t.index ["area_id"], name: "index_asignaturas_ on_area_id"
     t.index ["prerequisito_id"], name: "index_asignaturas_on_prerequisito_id"
   end
 

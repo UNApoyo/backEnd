@@ -1,8 +1,8 @@
 require 'fog'
 
 class HistoriaAcademica < ApplicationRecord
-  belongs_to :asignatura
-  belongs_to :estudiante
+  has_many  :asignatura
+  has_many :estudiante
   mount_uploader :avatar, AvatarUploader
   validates :calificacion, presence: true, inclusion: { in: 0..5}
 
