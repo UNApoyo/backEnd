@@ -21,6 +21,14 @@ class HistoriaAcademica < ApplicationRecord
 	def self.find_id_sort
 		self.select("asignatura_id")
 	end
+	
+	def self.best_calificacion
+		self.select("calificacion > 4")
+	end
+	
+	def self.worst_calificacion
+		self.select("calificacion < 3")
+	end
 
 #ejemplo carga de una imagen y almacenamiento en nube Rackspace
 =begin
