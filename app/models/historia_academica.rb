@@ -10,7 +10,9 @@ class HistoriaAcademica < ApplicationRecord
 		.where(asignaturas:{codigo:"historia_academicas.asignatura_id"})
 	end
 	
-	
+	def self.include_asignatura
+		includes(:asignaturas).where(asignaturas:{codigo:"historia_academicas.asignatura_id"}).references(:asignaturas)
+	end
 	
 	def self.historia_estudiante
 		joins(:estudiantes)
