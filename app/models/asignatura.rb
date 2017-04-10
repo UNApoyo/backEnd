@@ -6,10 +6,12 @@ class Asignatura < ApplicationRecord
   has_many :enfoques, through: :enfoque_asignaturas
   has_many :carreras, through: :carrera_asignaturas
   has_many :estudiantes, through: :historia_academicas
+  belongs :areas
 
   validates :nombre, presence: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create}
   validates :creditos, presence: true, inclusion: { in: 1..10}
-	
+  validates :areas, presence: true
+
 	def self.fundamentacion
 		self.select("codigo > 2000")
 	end

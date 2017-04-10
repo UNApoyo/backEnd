@@ -1,4 +1,4 @@
 class ProfesorGrado < ApplicationRecord
-  has_many :profesors
-  has_many :trabajo_grados
+  belongs :profesors
+  belongs :trabajo_grados
 end
