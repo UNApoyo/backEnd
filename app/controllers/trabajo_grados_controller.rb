@@ -46,6 +46,6 @@ class TrabajoGradosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def trabajo_grado_params
-      params.require(:trabajo_grado).permit(:nombre)
+      params.require(:trabajo_grado).permit(:nombre, :carrera_id)
     end
 end

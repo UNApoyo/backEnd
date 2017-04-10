@@ -46,6 +46,6 @@ class EnfoquesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def enfoque_params
-      params.require(:enfoque).permit(:nombre)
+      params.require(:enfoque).permit(:nombre, :carrera_id)
     end
 end

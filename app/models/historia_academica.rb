@@ -2,9 +2,11 @@ require 'fog'
 
 class HistoriaAcademica < ApplicationRecord
   has_many  :asignaturas
-  belongs_to  :estudiantes
+  has_many  :estudiantes
   mount_uploader :avatar, AvatarUploader
+  
   validates :calificacion, inclusion: { in: 0..5}
+
     def self.historia_asignatura
 		self.joins(:asignaturas).select("historia_academicas.estudiante_id,historia_academicas.calificacion")
 		.where(asignaturas:{codigo:"historia_academicas.asignatura_id"})

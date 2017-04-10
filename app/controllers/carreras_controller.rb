@@ -46,6 +46,6 @@ class CarrerasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def carrera_params
-      params.require(:carrera).permit(:nombre, :creditos, :codigo, :enfoque_id, :trabajo_grado_id, :estudiante_id)
+      params.require(:carrera).permit(:nombre, :creditos, :codigo)
     end
 end

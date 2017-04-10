@@ -7,6 +7,43 @@
 #pegar UNApoyo.yml ahi
 
 
+    Carrera.create(nombre:'Ingenieria Agricola',creditos:180)
+    Carrera.create(nombre:'Ingenieria Civil',creditos:180)
+    Carrera.create(nombre:'Ingenieria de Sistemas y Computacion',creditos:165)
+    Carrera.create(nombre:'Ingenieria Electrica',creditos:167)
+    Carrera.create(nombre:'Ingenieria Electronica',creditos:172)
+    Carrera.create(nombre:'Ingenieria Industrial',creditos:168)
+    Carrera.create(nombre:'Ingenieria Mecanica',creditos:180)
+    Carrera.create(nombre:'Ingenieria Mecatronica',creditos:179)
+    Carrera.create(nombre:'Ingenieria Quimica',creditos:180)
+
+    Asignatura.create(nombre:'Calculo Diferencial',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Calculo Diferencial en una Variable',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Algebra Lineal',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Algebra Lineal Basica',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Calculo Integral',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Calculo Integral en una Variable',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Calculo en Varias Variables',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Calculo Vectorial',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Ecuaciones Diferenciales',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Calculo de Ecuaciones Diferenciales',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Probabilidad',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Inferencia Estadistica',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Fundamentos de Mecanica',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Fundamentos de Electricidad y Magnetismo',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Programacion de Computadores',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Programacion Orientada a Objetos',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Fundamentos de Oscilaciones, Ondas y Optica',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Bilogia General',creditos: 3,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Principio de Quimica',creditos: 3,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Fisiologia Vegetal',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Dibujo Basico',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Metodos Numericos',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Modelacion Matematica',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Aplicacion de Elementos Finitos',creditos: 4,tipologia:'Fundamentacion')
+    Asignatura.create(nombre:'Modelos y Simulacion',creditos: 4,tipologia:'Fundamentacion')
+
+=begin
 require 'faker'
 Faker::Config.locale = 'UNApoyo'
 def make_asignaturas
@@ -181,3 +218,4 @@ make_enfoque_asignaturas
 make_profesor_grado
 make_area_investigacion
 make_profesor_investigacion
+=end

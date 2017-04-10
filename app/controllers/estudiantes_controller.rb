@@ -46,6 +46,6 @@ class EstudiantesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def estudiante_params
-      params.require(:estudiante).permit(:porcentaje_carrera, :creditos_disponibles, :creditos_aprobados, :creditos_inscritos, :creditos_pendientes)
+      params.require(:estudiante).permit(:porcentaje_carrera, :creditos_disponibles, :creditos_aprobados, :creditos_inscritos, :creditos_pendientes, :carrera_id)
     end
 end

@@ -1,4 +1,4 @@
 class TrabajoGradoSerializer < ActiveModel::Serializer
   type :data
-  attributes :nombre
+  attributes :nombre, :carrera_id
 end
