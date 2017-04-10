@@ -2,7 +2,7 @@ require 'fog'
 
 class HistoriaAcademica < ApplicationRecord
   has_many  :asignaturas
-  has_many  :estudiantes
+  belongs_to  :estudiantes
   mount_uploader :avatar, AvatarUploader
   validates :calificacion, inclusion: { in: 0..5}
     def self.historia_asignatura

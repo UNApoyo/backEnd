@@ -1,5 +1,5 @@
 class AreaInvestigacion < ApplicationRecord
-  belongs :areas
-  belongs :grupo_investigacions
+  belongs_to :areas
+  belongs_to :grupo_investigacions
 
 end

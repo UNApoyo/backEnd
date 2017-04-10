@@ -1,6 +1,6 @@
 class Estudiante < ApplicationRecord
-	belongs :historia_academicas
-  belongs :carreras
+	has_many :historia_academicas
+  belongs_to :carreras
 
   validates :porcentaje_carrera, presence: true, inclusion: {in: 0..100}
   validates :creditos_disponibles, presence: true
