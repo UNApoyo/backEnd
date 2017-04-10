@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20170410181507) do
     t.integer  "creditos"
     t.string   "tipologia"
     t.integer  "codigo"
-    t.integer  "prerequisito_id"
     t.integer  "area_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
