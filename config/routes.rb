@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :requisito_asignaturas
   resources :area_investigacions
   resources :areas
   resources :historia_academicas

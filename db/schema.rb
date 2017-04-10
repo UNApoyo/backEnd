@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407022225) do
+ActiveRecord::Schema.define(version: 20170410181507) do
 
   create_table "area_investigacions", force: :cascade do |t|
     t.integer  "area_id"
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20170407022225) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["area_id"], name: "index_asignaturas_on_area_id"
-    t.index ["prerequisito_id"], name: "index_asignaturas_on_prerequisito_id"
   end
 
   create_table "carrera_asignaturas", force: :cascade do |t|
@@ -114,9 +113,8 @@ ActiveRecord::Schema.define(version: 20170407022225) do
 
   create_table "prerequisitos", force: :cascade do |t|
     t.integer  "requisito"
-    t.integer  "requisito_de"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profesor_grados", force: :cascade do |t|
@@ -142,6 +140,15 @@ ActiveRecord::Schema.define(version: 20170407022225) do
     t.string   "info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "requisito_asignaturas", force: :cascade do |t|
+    t.integer  "prerequisito_id"
+    t.integer  "asignatura_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["asignatura_id"], name: "index_requisito_asignaturas_on_asignatura_id"
+    t.index ["prerequisito_id"], name: "index_requisito_asignaturas_on_prerequisito_id"
   end
 
   create_table "trabajo_grados", force: :cascade do |t|

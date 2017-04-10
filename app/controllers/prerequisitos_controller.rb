@@ -46,6 +46,6 @@ class PrerequisitosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def prerequisito_params
-      params.require(:prerequisito).permit(:requisito, :requisito_de)
+      params.require(:prerequisito).permit(:requisito)
     end
 end

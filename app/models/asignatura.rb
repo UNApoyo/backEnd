@@ -1,5 +1,6 @@
 class Asignatura < ApplicationRecord
-  has_many :prerequisitos
+  has_many :requisito_asignaturas, dependent: :destroy
+  has_many :prerequisitos, through: :requisito_asignaturas
   has_many :enfoque_asignaturas, dependent: :destroy
   has_many :carrera_asignaturas, dependent: :destroy
   has_many :historia_academicas, dependent: :destroy
