@@ -4,4 +4,8 @@ class Area < ApplicationRecord
 	has_many :grupo_investigacions, through: :area_investigacions
 
 	validates :nombre, presence: true#, uniqueness: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create}
+
+	def self.get_areas 
+	  self.select("nombre")
+	end
 end

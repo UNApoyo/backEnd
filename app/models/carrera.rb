@@ -8,15 +8,16 @@ class Carrera < ApplicationRecord
   has_many :grupo_investigacions, through: :carrera_investigacions
 
   validates :nombre, presence: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create} #/^[a-z ,.'-]+$/i
-#  validates :creditos, inclusion: { in: 1..115}
-#  validates :codigo, inclusion: { in: 1..10}
+  validates :creditos, inclusion: { in: 150..215}
+  validates :codigo, inclusion: { in: 1000..3000}
 
 
-def self.get_all_carreras #ejemplo query sencillo
-  self.select("nombre")
-end
+  def self.get_carreras
+    self.select("nombre")
+  end
 
-def self.get_carreras_programacion #no sirve, no puede hacer join con Asignatura
-  self.joins(:Asignatura).where(:nombre => "Programacion de Computadores")
-end
+  def self.det_carrera
+    self.where(nombre: 'Ingenieria de Sistemas y Computacion').take
+  end
+
 end

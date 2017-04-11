@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20170410181507) do
     t.string   "tipologia"
     t.integer  "codigo"
     t.integer  "area_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["area_id"], name: "index_asignaturas_on_area_id"
   end
 

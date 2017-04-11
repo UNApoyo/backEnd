@@ -4,4 +4,8 @@ class TrabajoGrado < ApplicationRecord
 	belongs_to :carreras
 
   validates :nombre, presence: true
+
+	def self.get_grados 
+	  self.select("nombre")
+	end
 end
