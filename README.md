@@ -20,6 +20,9 @@ Asignatura:
   of_historia   <-asignaturas de un estudiante
   of_carrera    <-asignatura de una carrera
   of_enfoque    <- asignatura de un enfoque
+  area_estudiante <-asignaturas de un estudiante x con area y
+  estudiante_tipo <-asignaturas de un estudiante x con tipologia y
+  enfoque_estudiante  <-asignaturas de un estudiante x de una tipologia y
 
 GrupoInvestigacion:
   get_investigaciones   <-lista de grupos de investigacion

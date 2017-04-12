@@ -16,4 +16,5 @@ class Area < ApplicationRecord
 	def self.of_investigacion
 		self.joins(:area_investigacions).where(area_investigacions: {grupo_investigacion_id: 1})
 	end
+
 end
