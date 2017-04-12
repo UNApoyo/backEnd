@@ -1,12 +1,12 @@
 require 'fog'
 
+
 class HistoriaAcademica < ApplicationRecord
-  belongs_to  :asignaturas
-  belongs_to  :estudiantes
+  belongs_to  :asignatura
+  belongs_to  :estudiante
   mount_uploader :avatar, AvatarUploader
 
   validates :calificacion, inclusion: { in: 0..5}
-
 
 	def self.best_calificacion
 		self.select("calificacion").where("calificacion > 4")

@@ -1,5 +1,5 @@
 class Estudiante < ApplicationRecord
-  belongs_to :carreras
+  belongs_to :carrera
 	has_many :historia_academicas, dependent: :destroy
 	has_many :asignaturas, through: :historia_academicas
 

@@ -1,4 +1,4 @@
 class EnfoqueAsignatura < ApplicationRecord
-  belongs_to :enfoques
-  belongs_to :asignaturas
+  belongs_to :enfoque
+  belongs_to :asignatura
 end

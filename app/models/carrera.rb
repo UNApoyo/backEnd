@@ -2,8 +2,8 @@ class Carrera < ApplicationRecord
   has_many :enfoques
   has_many :trabajo_grados
   has_many :estudiantes
-  has_many :carrera_asignaturas, dependent: :destroy
-  has_many :carrera_investigacions, dependent: :destroy
+  has_many :carrera_asignaturas
+  has_many :carrera_investigacions
   has_many :asignaturas, through: :carrera_asignaturas
   has_many :grupo_investigacions, through: :carrera_investigacions
 

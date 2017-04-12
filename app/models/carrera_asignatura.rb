@@ -1,4 +1,4 @@
 class CarreraAsignatura < ApplicationRecord
-  belongs_to :carreras
-  belongs_to :asignaturas
+  belongs_to :carrera
+  belongs_to :asignatura
 end

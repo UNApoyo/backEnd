@@ -12,6 +12,9 @@ Area:
 GrupoInvestigacion:
   get_investigaciones
 
+Enfoque:
+  of_carrera   <- enfoques de una carrera
+
 TrabajoGrado:
   get_grados
 

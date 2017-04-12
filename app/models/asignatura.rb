@@ -7,7 +7,7 @@ class Asignatura < ApplicationRecord
   has_many :enfoques, through: :enfoque_asignaturas
   has_many :carreras, through: :carrera_asignaturas
   has_many :estudiantes, through: :historia_academicas
-  belongs_to :areas
+  belongs_to :area
 
   validates :nombre, presence: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create}
   validates :creditos, presence: true, inclusion: { in: 1..10}
