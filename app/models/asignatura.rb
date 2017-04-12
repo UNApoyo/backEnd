@@ -13,5 +13,24 @@ class Asignatura < ApplicationRecord
   validates :creditos, presence: true, inclusion: { in: 1..10}
   validates :codigo, presence:true, inclusion: { in: 100000..5000000}
 
+  def self.of_area
+		self.joins(:area).where(areas: {nombre: 'Matematicas'})
+	end
+
+  def self.of_tipologia
+    self.where(tipologia: 'Fundamentacion')    
+  end
+
+  def self.of_historia
+		self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: 1})
+	end
+
+  def self.of_carrera
+    self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: 1})
+  end
+
+  def self.of_enfoque
+    self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {enfoque_id: 1})
+  end
 
 end

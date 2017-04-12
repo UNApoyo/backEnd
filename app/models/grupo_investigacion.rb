@@ -9,4 +9,11 @@ class GrupoInvestigacion < ApplicationRecord
 	def self.get_investigaciones
 	  self.select("nombre")
 	end
+
+	def self.of_carrera
+		self.joins(:carrera_investigacions).where(carrera_investigacions: {carrera_id: 1})
+	end
+	def self.of_area
+		self.joins(:area_investigacions).where(area_investigacions: {area_id: 1})
+	end
 end

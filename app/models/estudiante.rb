@@ -8,4 +8,5 @@ class Estudiante < ApplicationRecord
   validates :creditos_aprobados, presence: true
   validates :creditos_inscritos, presence: true
   validates :creditos_pendientes, presence: true
+
 end
