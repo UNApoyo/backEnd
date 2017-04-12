@@ -4,12 +4,12 @@ class Enfoque < ApplicationRecord
 	has_many :asignaturas, through: :enfoque_asignaturas
   validates :nombre, presence: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create}
 
-	def self.of_carrera
-		self.joins(:carrera).where(carreras: {nombre: 'Ingenieria de Sistemas y Computacion'})
+	def self.of_carrera(carrera)
+		self.joins(:carrera).where(carreras: {nombre: carrera})
 	end
 
-	def self.of_asignatura
-		self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {asignatura_id: 1})
+	def self.of_asignatura(asignatura)
+		self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {asignatura_id: asignatura})
 	end
 
 

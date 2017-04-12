@@ -10,10 +10,10 @@ class GrupoInvestigacion < ApplicationRecord
 	  self.select("nombre")
 	end
 
-	def self.of_carrera
-		self.joins(:carrera_investigacions).where(carrera_investigacions: {carrera_id: 1})
+	def self.of_carrera(carrera)
+		self.joins(:carrera_investigacions).where(carrera_investigacions: {carrera_id: carrera})
 	end
-	def self.of_area
-		self.joins(:area_investigacions).where(area_investigacions: {area_id: 1})
+	def self.of_area(area)
+		self.joins(:area_investigacions).where(area_investigacions: {area_id: area})
 	end
 end

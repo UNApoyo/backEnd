@@ -13,36 +13,36 @@ class Asignatura < ApplicationRecord
   validates :creditos, presence: true, inclusion: { in: 1..10}
   validates :codigo, presence:true, inclusion: { in: 100000..5000000}
 
-  def self.area_estudiante
-    self.includes(:area, :historia_academicas).where(asignaturas:{area_id:1}, historia_academicas:{estudiante_id: 1})
+  def self.area_estudiante(area, estudiante)
+    self.includes(:area, :historia_academicas).where(asignaturas:{area_id:area}, historia_academicas:{estudiante_id: estudiante})
   end
 
-  def self.enfoque_estudiante
-    self.includes(:enfoque_asignaturas, :historia_academicas).where(enfoque_asignaturas:{enfoque_id:1}, historia_academicas:{estudiante_id: 1})
+  def self.enfoque_estudiante(enfoque,estudiante)
+    self.includes(:enfoque_asignaturas, :historia_academicas).where(enfoque_asignaturas:{enfoque_id:enfoque}, historia_academicas:{estudiante_id: estudiante})
   end
 
-  def self.of_area
-		self.joins(:area).where(areas: {nombre: 'Matematicas'})
+  def self.of_area(area)
+		self.joins(:area).where(areas: {nombre: area})
 	end
 
-  def self.of_tipologia
-    self.where(tipologia: 'Fundamentacion')
+  def self.of_tipologia(tipo)
+    self.where(tipologia: tipo)
   end
 
-  def self.of_historia
-		self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: 1})
+  def self.of_historia(estudiante)
+		self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante})
 	end
 
-  def self.estudiante_tipo
-    self.joins(:historia_academicas).where(asignaturas:{tipologia:'Fundamentacion'})
+  def self.estudiante_tipo(tipo)
+    self.joins(:historia_academicas).where(asignaturas:{tipologia: tipo})
   end
 
-  def self.of_carrera
-    self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: 1})
+  def self.of_carrera(carrera)
+    self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera})
   end
 
-  def self.of_enfoque
-    self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {enfoque_id: 1})
+  def self.of_enfoque(enfoque)
+    self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {enfoque_id: enfoque})
   end
 
 end

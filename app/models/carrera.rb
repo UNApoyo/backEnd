@@ -11,24 +11,24 @@ class Carrera < ApplicationRecord
   validates :creditos, inclusion: { in: 150..215}
   validates :codigo, inclusion: { in: 1000..3000}
 
-  def self.of_estudiante
-		self.joins(:estudiantes).where(estudiantes: {id: 1})
+  def self.of_estudiante(estudiante)
+		self.joins(:estudiantes).where(estudiantes: {id: estudiante})
 	end
 
-  def self.of_asignatura
-		self.joins(:carrera_asignaturas).where(carrera_asignaturas: {asignatura_id: 1})
+  def self.of_asignatura(asignatura)
+		self.joins(:carrera_asignaturas).where(carrera_asignaturas: {asignatura_id: asignatura})
 	end
 
-  def self.of_investigacion
-		self.joins(:carrera_investigacions).where(carrera_investigacions: {grupo_investigacion_id: 1})
+  def self.of_investigacion(grupo)
+		self.joins(:carrera_investigacions).where(carrera_investigacions: {grupo_investigacion_id: grupo})
 	end
 
   def self.get_carreras
     self.select("nombre")
   end
 
-  def self.det_carrera
-    self.where(nombre: 'Ingenieria de Sistemas y Computacion').take
+  def self.det_carrera(carrera)
+    self.where(nombre: carrera).take
   end
 
 end

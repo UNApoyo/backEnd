@@ -9,8 +9,8 @@ class TrabajoGrado < ApplicationRecord
 	  self.select("nombre")
 	end
 
-	def self.of_carrera
-		self.joins(:carrera).where(carreras: {nombre: 'Ingenieria de Sistemas y Computacion'})
+	def self.of_carrera(carrera)
+		self.joins(:carrera).where(carreras: {nombre: carrera})
 	end
 
 end

@@ -9,12 +9,12 @@ class Area < ApplicationRecord
 	  self.select("nombre")
 	end
 
-	def self.of_asignatura
-		self.joins(:asignaturas).where(asignaturas: {nombre: 'Bases de Datos'})
+	def self.of_asignatura(asignatura)
+		self.joins(:asignaturas).where(asignaturas: {nombre: asignatura})
 	end
 
-	def self.of_investigacion
-		self.joins(:area_investigacions).where(area_investigacions: {grupo_investigacion_id: 1})
+	def self.of_investigacion(id)
+		self.joins(:area_investigacions).where(area_investigacions: {grupo_investigacion_id: id})
 	end
 
 end
