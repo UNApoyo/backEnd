@@ -22,7 +22,7 @@ Asignatura:
   of_enfoque    <- asignatura de un enfoque
   area_estudiante <-asignaturas de un estudiante x con area y
   estudiante_tipo <-asignaturas de un estudiante x con tipologia y
-  enfoque_estudiante  <-asignaturas de un estudiante x de una tipologia y
+  enfoque_estudiante  <-asignaturas de un estudiante x que pertenecen a enfoque y
 
 GrupoInvestigacion:
   get_investigaciones   <-lista de grupos de investigacion
@@ -44,3 +44,6 @@ HistoriaAcademica:
 Profesor:
   of_grado    <-profesores asociados a un trabajo de grado x
   of_investigacion    <-profesores asociadosa un grupo de investigacion x
+
+  RequisitoAsignatura:
+    of_asignatura   <-prerequisitos de una asignatura
