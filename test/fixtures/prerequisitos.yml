@@ -2,8 +2,6 @@
 
 one:
   requisito: 1
-  requisito_de: 1
 
 two:
   requisito: 1
-  requisito_de: 1

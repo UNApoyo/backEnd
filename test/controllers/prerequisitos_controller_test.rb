@@ -12,7 +12,7 @@ class PrerequisitosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create prerequisito" do
     assert_difference('Prerequisito.count') do
-      post prerequisitos_url, params: { prerequisito: { requisito: @prerequisito.requisito, requisito_de: @prerequisito.requisito_de } }, as: :json
+      post prerequisitos_url, params: { prerequisito: { requisito: @prerequisito.requisito } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class PrerequisitosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update prerequisito" do
-    patch prerequisito_url(@prerequisito), params: { prerequisito: { requisito: @prerequisito.requisito, requisito_de: @prerequisito.requisito_de } }, as: :json
+    patch prerequisito_url(@prerequisito), params: { prerequisito: { requisito: @prerequisito.requisito } }, as: :json
     assert_response 200
   end
 

@@ -12,7 +12,7 @@ class EnfoquesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create enfoque" do
     assert_difference('Enfoque.count') do
-      post enfoques_url, params: { enfoque: { nombre: @enfoque.nombre } }, as: :json
+      post enfoques_url, params: { enfoque: { nombre: @enfoque.nombre, carrera_id: @enfoque.carrera_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class EnfoquesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update enfoque" do
-    patch enfoque_url(@enfoque), params: { enfoque: { nombre: @enfoque.nombre } }, as: :json
+    patch enfoque_url(@enfoque), params: { enfoque: { nombre: @enfoque.nombre, carrera_id: @enfoque.carrera_id } }, as: :json
     assert_response 200
   end
 

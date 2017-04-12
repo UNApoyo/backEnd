@@ -12,7 +12,7 @@ class AsignaturasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create asignatura" do
     assert_difference('Asignatura.count') do
-      post asignaturas_url, params: { asignatura: { codigo: @asignatura.codigo, creditos: @asignatura.creditos, nombre: @asignatura.nombre, prerequisito_id: @asignatura.prerequisito_id, tipologia: @asignatura.tipologia } }, as: :json
+      post asignaturas_url, params: { asignatura: { nombre: @asignatura.nombre, creditos: @asignatura.creditos, tipologia: @asignatura.tipologia, codigo: @asignatura.codigo, area_id: @asignatura.area_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class AsignaturasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update asignatura" do
-    patch asignatura_url(@asignatura), params: { asignatura: { codigo: @asignatura.codigo, creditos: @asignatura.creditos, nombre: @asignatura.nombre, prerequisito_id: @asignatura.prerequisito_id, tipologia: @asignatura.tipologia } }, as: :json
+    patch asignatura_url(@asignatura), params: { asignatura: { nombre: @asignatura.nombre, creditos: @asignatura.creditos, tipologia: @asignatura.tipologia, codigo: @asignatura.codigo, area_id: @asignatura.area_id } }, as: :json
     assert_response 200
   end
 

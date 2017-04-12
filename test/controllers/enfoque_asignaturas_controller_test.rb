@@ -12,7 +12,7 @@ class EnfoqueAsignaturasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create enfoque_asignatura" do
     assert_difference('EnfoqueAsignatura.count') do
-      post enfoque_asignaturas_url, params: { enfoque_asignatura: { asignatura_id: @enfoque_asignatura.asignatura_id, enfoque_id: @enfoque_asignatura.enfoque_id } }, as: :json
+      post enfoque_asignaturas_url, params: { enfoque_asignatura: { enfoque_id: @enfoque_asignatura.enfoque_id, asignatura_id: @enfoque_asignatura.asignatura_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class EnfoqueAsignaturasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update enfoque_asignatura" do
-    patch enfoque_asignatura_url(@enfoque_asignatura), params: { enfoque_asignatura: { asignatura_id: @enfoque_asignatura.asignatura_id, enfoque_id: @enfoque_asignatura.enfoque_id } }, as: :json
+    patch enfoque_asignatura_url(@enfoque_asignatura), params: { enfoque_asignatura: { enfoque_id: @enfoque_asignatura.enfoque_id, asignatura_id: @enfoque_asignatura.asignatura_id } }, as: :json
     assert_response 200
   end
 

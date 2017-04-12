@@ -5,11 +5,11 @@ one:
   creditos: 1
   tipologia: MyString
   codigo: 1
-  prerequisito: one
+  area: one
 
 two:
   nombre: MyString
   creditos: 1
   tipologia: MyString
   codigo: 1
-  prerequisito: two
+  area: two

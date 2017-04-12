@@ -12,7 +12,7 @@ class AreasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create area" do
     assert_difference('Area.count') do
-      post areas_url, params: { area: { materia_id: @area.materia_id, nombre: @area.nombre } }, as: :json
+      post areas_url, params: { area: { nombre: @area.nombre } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class AreasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update area" do
-    patch area_url(@area), params: { area: { materia_id: @area.materia_id, nombre: @area.nombre } }, as: :json
+    patch area_url(@area), params: { area: { nombre: @area.nombre } }, as: :json
     assert_response 200
   end
 

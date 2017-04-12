@@ -12,7 +12,7 @@ class CarrerasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create carrera" do
     assert_difference('Carrera.count') do
-      post carreras_url, params: { carrera: { codigo: @carrera.codigo, creditos: @carrera.creditos, enfoque_id: @carrera.enfoque_id, estudiante_id: @carrera.estudiante_id, nombre: @carrera.nombre, trabajo_grado_id: @carrera.trabajo_grado_id } }, as: :json
+      post carreras_url, params: { carrera: { nombre: @carrera.nombre, creditos: @carrera.creditos, codigo: @carrera.codigo } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class CarrerasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update carrera" do
-    patch carrera_url(@carrera), params: { carrera: { codigo: @carrera.codigo, creditos: @carrera.creditos, enfoque_id: @carrera.enfoque_id, estudiante_id: @carrera.estudiante_id, nombre: @carrera.nombre, trabajo_grado_id: @carrera.trabajo_grado_id } }, as: :json
+    patch carrera_url(@carrera), params: { carrera: { nombre: @carrera.nombre, creditos: @carrera.creditos, codigo: @carrera.codigo } }, as: :json
     assert_response 200
   end
 

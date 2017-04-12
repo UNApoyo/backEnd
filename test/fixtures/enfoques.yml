@@ -2,6 +2,8 @@
 
 one:
   nombre: MyString
+  carrera: one
 
 two:
   nombre: MyString
+  carrera: two

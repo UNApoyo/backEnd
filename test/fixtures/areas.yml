@@ -2,8 +2,6 @@
 
 one:
   nombre: MyString
-  materia: one
 
 two:
   nombre: MyString
-  materia: two

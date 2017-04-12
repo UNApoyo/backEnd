@@ -12,7 +12,7 @@ class TrabajoGradosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create trabajo_grado" do
     assert_difference('TrabajoGrado.count') do
-      post trabajo_grados_url, params: { trabajo_grado: { nombre: @trabajo_grado.nombre } }, as: :json
+      post trabajo_grados_url, params: { trabajo_grado: { carrera_id: @trabajo_grado.carrera_id, nombre: @trabajo_grado.nombre } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class TrabajoGradosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update trabajo_grado" do
-    patch trabajo_grado_url(@trabajo_grado), params: { trabajo_grado: { nombre: @trabajo_grado.nombre } }, as: :json
+    patch trabajo_grado_url(@trabajo_grado), params: { carrera_id: @trabajo_grado.carrera_id, trabajo_grado: { nombre: @trabajo_grado.nombre } }, as: :json
     assert_response 200
   end
 
