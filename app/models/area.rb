@@ -6,15 +6,15 @@ class Area < ApplicationRecord
 	validates :nombre, presence: true#, uniqueness: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create}
 
 	def self.get_areas
-	  self.select("nombre")
+	  self.select("nombre").paginate(:page => 2, :per_page => 30)
 	end
 
 	def self.of_asignatura(asignatura)
-		self.joins(:asignaturas).where(asignaturas: {nombre: asignatura})
+		self.joins(:asignaturas).where(asignaturas: {nombre: asignatura}).paginate(:page => 2, :per_page => 30)
 	end
 
 	def self.of_investigacion(id)
-		self.joins(:area_investigacions).where(area_investigacions: {grupo_investigacion_id: id})
+		self.joins(:area_investigacions).where(area_investigacions: {grupo_investigacion_id: id}).paginate(:page => 2, :per_page => 30)
 	end
 
 end

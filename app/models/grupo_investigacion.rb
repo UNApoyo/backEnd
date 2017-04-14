@@ -7,13 +7,13 @@ class GrupoInvestigacion < ApplicationRecord
 	has_many :profesors, through: :profesor_investigacions
 
 	def self.get_investigaciones
-	  self.select("nombre")
+	  self.select("nombre").paginate(:page => 2, :per_page => 30)
 	end
 
 	def self.of_carrera(carrera)
-		self.joins(:carrera_investigacions).where(carrera_investigacions: {carrera_id: carrera})
+		self.joins(:carrera_investigacions).where(carrera_investigacions: {carrera_id: carrera}).paginate(:page => 2, :per_page => 30)
 	end
 	def self.of_area(area)
-		self.joins(:area_investigacions).where(area_investigacions: {area_id: area})
+		self.joins(:area_investigacions).where(area_investigacions: {area_id: area}).paginate(:page => 2, :per_page => 30)
 	end
 end

@@ -5,11 +5,11 @@ class Enfoque < ApplicationRecord
   validates :nombre, presence: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create}
 
 	def self.of_carrera(carrera)
-		self.joins(:carrera).where(carreras: {nombre: carrera})
+		self.joins(:carrera).where(carreras: {nombre: carrera}).paginate(:page => 2, :per_page => 30)
 	end
 
 	def self.of_asignatura(asignatura)
-		self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {asignatura_id: asignatura})
+		self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {asignatura_id: asignatura}).paginate(:page => 2, :per_page => 30)
 	end
 
 
