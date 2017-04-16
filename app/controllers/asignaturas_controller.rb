@@ -37,6 +37,32 @@ class AsignaturasController < ApplicationController
   def destroy
     @asignatura.destroy
   end
+  def porcentajeArea
+    @porcentaje_area = Asignatura.porcentaje_estudiante_area(params[:estudiante_id] ,params[:area_id], params[:carrera_id])
+    if @porcentaje_area.empty?
+      render json:
+        { data:
+            {
+                error: "No area percent"
+              }
+        }
+    else
+      render json: @porcentaje_area
+    end
+  end
+  def porcentajeTipologia
+    @porcentaje_tipologia = Asignatura.porcentaje_estudiante_tipologia(params[:estudiante_id] ,params[:tipologia], params[:carrera_id])
+    if @porcentaje_tipologia.empty?
+      render json:
+        { data:
+            {
+                error: "No type percent"
+              }
+        }
+    else
+      render json: @porcentaje_tipologia
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -48,4 +74,6 @@ class AsignaturasController < ApplicationController
     def asignatura_params
       params.require(:asignatura).permit(:nombre, :creditos, :tipologia, :codigo, :area_id)
     end
+
+
 end

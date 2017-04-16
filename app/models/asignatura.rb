@@ -61,13 +61,13 @@ class Asignatura < ApplicationRecord
     self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {enfoque_id: enfoque}).paginate(:page => page, :per_page => per_page)
   end
 
-  def self.porcentaje_estudiante_tipologia(estudiante, tipologia,carrera,page,per_page)
+  def self.porcentaje_estudiante_tipologia(estudiante, tipologia,carrera)
 	num = self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{tipologia: tipologia}).count
 	dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{tipologia: tipologia}).count
 	res = num.to_f/dem.to_f * 100
   end
 
-  def self.porcentaje_estudiante_area(estudiante, area,carrera,page,per_page)
+  def self.porcentaje_estudiante_area(estudiante, area,carrera)
 	num = self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{area_id: area}).count
 	dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{area_id: area}).count
 	res = num.to_f/dem.to_f * 100

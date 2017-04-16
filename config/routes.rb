@@ -16,5 +16,32 @@ Rails.application.routes.draw do
   resources :enfoques
   resources :asignaturas
   resources :prerequisitos
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
+  resources :historia_academicas do
+    member do
+      get 'promedioArea'
+    end
+  end
+
+  resources :historia_academicas do
+    member do
+      get 'promedioTipologia'
+    end
+  end
+
+  resources :asignaturas do
+    member do
+      get 'porcentajeTipologia'
+    end
+  end
+
+  resources :asignaturas do
+    member do
+      get 'porcentajeArea'
+    end
+  end
+
 end

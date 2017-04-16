@@ -38,6 +38,34 @@ class HistoriaAcademicasController < ApplicationController
     @historia_academica.destroy
   end
 
+  def promedioArea
+    @pro_area = HistoriaAcademica.promedio_area(params[:tipologia])
+    if @pro_area.empty?
+      render json:
+        { data:
+            {
+                error: "No average"
+              }
+        }
+    else
+      render json: @pro_area
+    end
+  end
+
+  def promedioTipologia
+    @pro_tipologia = HistoriaAcademica.promedio_tipologia(params[:area_id])
+    if @pro_tipologia.empty?
+      render json:
+        { data:
+            {
+                error: "No average"
+              }
+        }
+    else
+      render json: @pro_tipologia
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_historia_academica
