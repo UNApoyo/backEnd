@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410181507) do
+ActiveRecord::Schema.define(version: 20170415190517) do
 
   create_table "area_investigacions", force: :cascade do |t|
     t.integer  "area_id"
@@ -60,8 +60,14 @@ ActiveRecord::Schema.define(version: 20170410181507) do
     t.string   "nombre"
     t.integer  "creditos"
     t.integer  "codigo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "enfoque_id"
+    t.integer  "trabajo_grado_id"
+    t.integer  "estudiante_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["enfoque_id"], name: "index_carreras_on_enfoque_id"
+    t.index ["estudiante_id"], name: "index_carreras_on_estudiante_id"
+    t.index ["trabajo_grado_id"], name: "index_carreras_on_trabajo_grado_id"
   end
 
   create_table "enfoque_asignaturas", force: :cascade do |t|
@@ -75,10 +81,9 @@ ActiveRecord::Schema.define(version: 20170410181507) do
 
   create_table "enfoques", force: :cascade do |t|
     t.string   "nombre"
-    t.integer  "carrera_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["carrera_id"], name: "index_enfoques_on_carrera_id"
+    t.integer  "carrera_id"
   end
 
   create_table "estudiantes", force: :cascade do |t|
@@ -87,10 +92,9 @@ ActiveRecord::Schema.define(version: 20170410181507) do
     t.integer  "creditos_aprobados"
     t.integer  "creditos_inscritos"
     t.integer  "creditos_pendientes"
-    t.integer  "carrera_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.index ["carrera_id"], name: "index_estudiantes_on_carrera_id"
+    t.integer  "carrera_id"
   end
 
   create_table "grupo_investigacions", force: :cascade do |t|
@@ -152,10 +156,9 @@ ActiveRecord::Schema.define(version: 20170410181507) do
 
   create_table "trabajo_grados", force: :cascade do |t|
     t.string   "nombre"
-    t.integer  "carrera_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["carrera_id"], name: "index_trabajo_grados_on_carrera_id"
+    t.integer  "carrera_id"
   end
 
 end

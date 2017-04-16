@@ -13,36 +13,64 @@ class Asignatura < ApplicationRecord
   validates :creditos, presence: true, inclusion: { in: 1..10}
   validates :codigo, presence:true, inclusion: { in: 100000..5000000}
 
-  def self.area_estudiante(area, estudiante)
-    self.includes(:area, :historia_academicas).where(asignaturas:{area_id:area}, historia_academicas:{estudiante_id: estudiante}).paginate(:page => 2, :per_page => 30)
+  def self.area_estudiante(area, estudiante,page,per_page)
+    self.includes(:area, :historia_academicas).where(asignaturas:{area_id:area}, historia_academicas:{estudiante_id: estudiante}).paginate(:page => page, :per_page => per_page)
   end
 
-  def self.enfoque_estudiante(enfoque,estudiante)
-    self.includes(:enfoque_asignaturas, :historia_academicas).where(enfoque_asignaturas:{enfoque_id:enfoque}, historia_academicas:{estudiante_id: estudiante}).paginate(:page => 2, :per_page => 30)
+  def self.enfoque_estudiante(enfoque,estudiante,page,per_page)
+    self.includes(:enfoque_asignaturas, :historia_academicas).where(enfoque_asignaturas:{enfoque_id:enfoque}, historia_academicas:{estudiante_id: estudiante}).paginate(:page => page, :per_page => per_page)
   end
 
-  def self.of_area(area)
-		self.joins(:area).where(areas: {nombre: area}).paginate(:page => 2, :per_page => 30)
+  def self.of_area(area,page,per_page)
+		self.joins(:area).where(areas: {nombre: area}).paginate(:page => page, :per_page => per_page)
 	end
 
-  def self.of_tipologia(tipo)
-    self.where(tipologia: tipo).paginate(:page => 2, :per_page => 30)
+  def self.of_tipologia(tipo,page,per_page)
+    self.where(tipologia: tipo).paginate(:page => page, :per_page => per_page)
   end
 
-  def self.of_historia(estudiante)
-		self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}).paginate(:page => 2, :per_page => 30)
+  def self.of_historia(estudiante,page,per_page)
+		self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}).paginate(:page => page, :per_page => per_page)
 	end
 
-  def self.estudiante_tipo(tipo)
-    self.joins(:historia_academicas).where(asignaturas:{tipologia: tipo}).paginate(:page => 2, :per_page => 30)
+  def self.of_historia_tipologia(estudiante, tipologia,page,per_page)
+		self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{tipologia: tipologia}).paginate(:page => page, :per_page => per_page)
+	end
+
+	def self.of_historia_area(estudiante, area,page,per_page)
+		self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{area_id: area}).paginate(:page => page, :per_page => per_page)
+	end
+
+	def self.estudiante_tipo(tipo,page,per_page)
+    self.joins(:historia_academicas).where(asignaturas:{tipologia: tipo}).paginate(:page => page, :per_page => per_page)
   end
 
-  def self.of_carrera(carrera)
-    self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera}).paginate(:page => 2, :per_page => 30)
+  def self.of_carrera(carrera,page,per_page)
+    self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera}).paginate(:page => page, :per_page => per_page)
   end
 
-  def self.of_enfoque(enfoque)
-    self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {enfoque_id: enfoque}).paginate(:page => 2, :per_page => 30)
+  def self.of_carrera_tipologia(carrera,tipologia,page,per_page)
+    self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{tipologia: tipologia}).paginate(:page => page, :per_page => per_page)
+  end
+
+  def self.of_carrera_area(carrera,area,page,per_page)
+    self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{area_id: area}).paginate(:page => page, :per_page => per_page)
+  end
+
+  def self.of_enfoque(enfoque,page,per_page)
+    self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {enfoque_id: enfoque}).paginate(:page => page, :per_page => per_page)
+  end
+
+  def self.porcentaje_estudiante_tipologia(estudiante, tipologia,carrera,page,per_page)
+	num = self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{tipologia: tipologia}).count
+	dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{tipologia: tipologia}).count
+	res = num.to_f/dem.to_f * 100
+  end
+
+  def self.porcentaje_estudiante_area(estudiante, area,carrera,page,per_page)
+	num = self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{area_id: area}).count
+	dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{area_id: area}).count
+	res = num.to_f/dem.to_f * 100
   end
 
 end

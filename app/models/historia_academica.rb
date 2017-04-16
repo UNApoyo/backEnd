@@ -1,6 +1,5 @@
 require 'fog'
 
-
 class HistoriaAcademica < ApplicationRecord
   belongs_to  :asignatura
   belongs_to  :estudiante
@@ -8,57 +7,38 @@ class HistoriaAcademica < ApplicationRecord
 
   validates :calificacion, inclusion: { in: 0..5}
 
-	def self.best_calificacion
-		self.select("calificacion").where("calificacion > 4").paginate(:page => 2, :per_page => 30)
+
+	def self.best_calificacion(page, per_page)
+		self.paginate.select("calificacion").where("calificacion > 3.0 ").(:page => page, :per_page => per_page)
 	end
 
-	def self.worst_calificacion
-		self.select("calificacion").where("calificacion < 3").paginate(:page => 2, :per_page => 30)
+	def self.worst_calificacion(page, per_page)
+		self.select("calificacion").where("calificacion < 3.0 ").paginate(:page => page, :per_page => per_page)
 	end
 
-  def self.calificaciones_fundamentacion
-    self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: "Fundamentacion"}).paginate(:page => 2, :per_page => 30)
+  def self.calificaciones_tipologia(tipologia,page, per_page)
+    self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia}).paginate(:page => page, :per_page => per_page)
   end
 
-  def self.calificaciones_disciplinar
-    self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: "Disciplinar"}).paginate(:page => 2, :per_page => 30)
+  def self.calificaciones_area(area,page, per_page)
+    self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area}).paginate(:page => page, :per_page => per_page)
   end
+  def self.creditos_tipologia(tipologia,page, per_page)
+    self.includes(:asignatura).select("creditos").where(asignaturas: {tipologia: tipologia}).paginate(:page => page, :per_page => per_page)
+  end
+  def self.creditos_area(area,page, per_page)
+    self.joins(:asignatura).select("creditos").paginate(:page => page, :per_page => per_page).where(asignaturas: {area_id: area})
+  end 
 
-  def self.calificaciones_libre
-    self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: "Libre"}).paginate(:page => 2, :per_page => 30)
-  end
-
-  def self.calificaciones_area(area)
-    self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area}).paginate(:page => 2, :per_page => 30)
-  end
-  def self.creditos_tipologia(tipologia)
-    self.includes(:asignatura).select("creditos").where(asignaturas: {tipologia: tipologia}).paginate(:page => 2, :per_page => 30)
-  end
-  def self.creditos_area(area)
-    self.includes(:asignatura).select("creditos").where(asignaturas: {area_id: area}).paginate(:page => 2, :per_page => 30)
-  end
-
-  def self.promedio_fundamentacion
-    sum = calificaciones_fundamentacion.sum("calificacion")
-    num = calificaciones_fundamentacion.count
-    prom = sum/num
-  end
-
-  def self.promedio_disciplinar
-    sum = calificaciones_disciplinar.sum("calificacion")
-    num = calificaciones_disciplinar.count
-    prom = sum/num
-  end
-
-  def self.promedio_libre
-    sum = calificaciones_libre.sum("calificacion")
-    num = calificaciones_libre.count
+  def self.promedio_tipologia(tipologia)
+    sum = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia}).sum("calificacion")
+    num = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia}).count
     prom = sum/num
   end
 
   def self.promedio_area(area)
-    sum = calificaciones_area(area).sum("calificacion")
-    num = calificaciones_area(area).count
+    sum = self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area}).sum("calificacion")
+    num = self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area}).count
     prom = sum/num
   end
 

@@ -5,12 +5,12 @@ class TrabajoGrado < ApplicationRecord
 
   validates :nombre, presence: true
 
-	def self.get_grados
-	  self.select("nombre").paginate(:page => 2, :per_page => 30)
+	def self.get_grados(page,per_page)
+	  self.select("nombre").paginate(:page => page, :per_page => per_page)
 	end
 
-	def self.of_carrera(carrera)
-		self.joins(:carrera).where(carreras: {nombre: carrera}).paginate(:page => 2, :per_page => 30)
+	def self.of_carrera(carrera,page,per_page)
+		self.joins(:carrera).where(carreras: {nombre: carrera}).paginate(:page => page, :per_page => per_page)
 	end
 
 end

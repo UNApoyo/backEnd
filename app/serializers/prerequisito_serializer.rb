@@ -1,4 +1,5 @@
 class PrerequisitoSerializer < ActiveModel::Serializer
   type :data
-  attributes :requisito, :requisito_de
+  attributes :requisito
+  has_many :asignaturas
 end

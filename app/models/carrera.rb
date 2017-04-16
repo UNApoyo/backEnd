@@ -11,24 +11,24 @@ class Carrera < ApplicationRecord
   validates :creditos, inclusion: { in: 150..215}
   validates :codigo, inclusion: { in: 1000..3000}
 
-  def self.of_estudiante(estudiante)
-		self.joins(:estudiantes).where(estudiantes: {id: estudiante}).paginate(:page => 2, :per_page => 30)
+  def self.of_estudiante(estudiante,page,per_page)
+		self.joins(:estudiantes).where(estudiantes: {id: estudiante}).paginate(:page => page, :per_page => per_page)
 	end
 
-  def self.of_asignatura(asignatura)
-		self.joins(:carrera_asignaturas).where(carrera_asignaturas: {asignatura_id: asignatura}).paginate(:page => 2, :per_page => 30)
+  def self.of_asignatura(asignatura,page,per_page)
+		self.joins(:carrera_asignaturas).where(carrera_asignaturas: {asignatura_id: asignatura}).paginate(:page => page, :per_page => per_page)
 	end
 
-  def self.of_investigacion(grupo)
-		self.joins(:carrera_investigacions).where(carrera_investigacions: {grupo_investigacion_id: grupo}).paginate(:page => 2, :per_page => 30)
+  def self.of_investigacion(grupo,page,per_page)
+		self.joins(:carrera_investigacions).where(carrera_investigacions: {grupo_investigacion_id: grupo}).paginate(:page => page, :per_page => per_page)
 	end
 
-  def self.get_carreras
-    self.select("nombre").paginate(:page => 2, :per_page => 30)
+  def self.get_carreras(page,per_page)
+    self.select("nombre").paginate(:page => 2page, :per_page => per_page)
   end
 
-  def self.det_carrera(carrera)
-    self.where(nombre: carrera).take.paginate(:page => 2, :per_page => 30)
+  def self.det_carrera(carrera,page,per_page)
+    self.where(nombre: carrera).take.paginate(:page => page, :per_page => per_page)
   end
 
 end

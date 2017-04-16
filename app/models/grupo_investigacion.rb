@@ -10,10 +10,10 @@ class GrupoInvestigacion < ApplicationRecord
 	  self.select("nombre").paginate(:page => 2, :per_page => 30)
 	end
 
-	def self.of_carrera(carrera)
-		self.joins(:carrera_investigacions).where(carrera_investigacions: {carrera_id: carrera}).paginate(:page => 2, :per_page => 30)
+	def self.of_carrera(carrera,page,per_page)
+		self.joins(:carrera_investigacions).where(carrera_investigacions: {carrera_id: carrera}).paginate(:page => page, :per_page => per_page)
 	end
-	def self.of_area(area)
-		self.joins(:area_investigacions).where(area_investigacions: {area_id: area}).paginate(:page => 2, :per_page => 30)
+	def self.of_area(area,page,per_page)
+		self.joins(:area_investigacions).where(area_investigacions: {area_id: area}).paginate(:page => page, :per_page => per_page)
 	end
 end

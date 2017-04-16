@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem 'nokogiri', '>= 1.6.7'
 gem 'will_paginate', '~> 3.1.1'
 gem "fog"
 gem 'carrierwave', '~> 1.0'
