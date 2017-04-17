@@ -131,10 +131,10 @@ ActiveRecord::Schema.define(version: 20170415190517) do
 
   create_table "profesor_investigacions", force: :cascade do |t|
     t.integer  "profesor_id"
-    t.integer  "investigacion_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["investigacion_id"], name: "index_profesor_investigacions_on_investigacion_id"
+    t.integer  "grupo_investigacion_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["grupo_investigacion_id"], name: "index_profesor_investigacions_on_grupo_investigacion_id"
     t.index ["profesor_id"], name: "index_profesor_investigacions_on_profesor_id"
   end
 

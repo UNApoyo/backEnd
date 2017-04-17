@@ -4,3 +4,4 @@ class EnfoqueSerializer < ActiveModel::Serializer
   belongs_to :carrera
   has_many :enfoque_asignaturas
   has_many :asignaturas
+end

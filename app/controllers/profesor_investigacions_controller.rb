@@ -46,6 +46,6 @@ class ProfesorInvestigacionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def profesor_investigacion_params
-      params.require(:profesor_investigacion).permit(:profesor_id, :investigacion_id)
+      params.require(:profesor_investigacion).permit(:profesor_id, :grupo_investigacion_id)
     end
 end

@@ -163,7 +163,7 @@ HistoriaAcademica.create(calificacion:2.5,asignatura_id:7,estudiante_id:1)
 
 ProfesorGrado.create(profesor_id:1,trabajo_grado_id:1)
 
-ProfesorInvestigacion.create(profesor_id:1,investigacion_id:1)
+ProfesorInvestigacion.create(profesor_id:1,grupo_investigacion_id:1)
 
 
 

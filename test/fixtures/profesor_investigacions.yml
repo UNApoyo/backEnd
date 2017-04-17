@@ -2,8 +2,8 @@
 
 one:
   profesor: one
-  investigacion: one
+  grupo_investigacion: one
 
 two:
   profesor: two
-  investigacion: two
+  grupo_investigacion: two
