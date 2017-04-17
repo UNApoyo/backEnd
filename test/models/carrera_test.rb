@@ -5,12 +5,23 @@ class CarreraTest < ActiveSupport::TestCase
   #   assert true
   # end
   test "should not save carrera without creditos" do
-  		carrera = Carrera.new(nombre: 'carrerita', codigo:2870)
+      @carrera = carreras(:un_carrera)
+      @carrera.creditos= nil
+  		carrera = @carrera
   		assert_not carrera.save
   end
 
   test "should not save carrera without codigo" do
-  		carrera = Carrera.new(nombre: 'carrerita', creditos:180)
+    @carrera = carreras(:un_carrera)
+    @carrera.codigo= 200
+    carrera= @carrera
   		assert_not carrera.save
+  end
+
+  test 'no valid codigo' do
+    @carrera = carreras(:un_carrera)
+    @carrera.codigo= 200
+    carrera= @carrera
+    assert_not carrera.valid?
   end
 end

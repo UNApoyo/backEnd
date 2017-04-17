@@ -5,12 +5,16 @@ class AsignaturaTest < ActiveSupport::TestCase
   #   assert true
   # end
   test "should not save asignatura without codigo" do
-  		asignatura = Asignatura.new(nombre: 'calculito', creditos: 4)
+      @asignatura = asignaturas(:un_asignatura)
+      @asignatura.codigo= nil
+      asignatura = @asignatura
   		assert_not asignatura.save
   end
 
   test "should not save asignatura without creditos" do
-  		asignatura = Asignatura.new(nombre: 'calculito', codigo: 200000)
+      @asignatura = asignaturas(:un_asignatura)
+      @asignatura.creditos= nil
+      asignatura = @asignatura
   		assert_not asignatura.save
   end
 end

@@ -1,5 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+un_historia:
+  calificacion: 4.5
+  asignatura: Calculo
+  estudiante: one
+
 one:
   calificacion: 9.99
   asignatura: one

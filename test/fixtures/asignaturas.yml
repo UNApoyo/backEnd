@@ -1,5 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+un_asignatura:
+  nombre: Calculo
+  creditos: 3
+  tipologia: Fundamentacion
+  codigo: 1000003
+  area: Matematicas
+
 one:
   nombre: MyString
   creditos: 1
