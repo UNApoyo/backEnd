@@ -44,4 +44,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :asignaturas do
+    member do
+      get 'sugerenciaEnfoque'
+    end
+  end
+
+  resources :carreras do
+    member do
+      get 'sugerenciaTrabajoGrado'
+    end
+  end
+
 end

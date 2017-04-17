@@ -9,7 +9,7 @@ class HistoriaAcademica < ApplicationRecord
 
 
 	def self.best_calificacion(page, per_page)
-		self.paginate.select("calificacion").where("calificacion > 3.0 ").(:page => page, :per_page => per_page)
+		self.select("calificacion").where("calificacion > 3.0 ").paginate(:page => page, :per_page => per_page)
 	end
 
 	def self.worst_calificacion(page, per_page)
@@ -28,7 +28,7 @@ class HistoriaAcademica < ApplicationRecord
   end
   def self.creditos_area(area,page, per_page)
     self.joins(:asignatura).select("creditos").paginate(:page => page, :per_page => per_page).where(asignaturas: {area_id: area})
-  end 
+  end
 
   def self.promedio_tipologia(tipologia)
     sum = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia}).sum("calificacion")
@@ -41,9 +41,8 @@ class HistoriaAcademica < ApplicationRecord
     num = self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area}).count
     prom = sum/num
   end
+#  def self.sugerencia_trabajo_grado(page,per_page)
 
-  #def self.porcentaje_tipologia(tipologia)
-  #  self.includes(:asignatura)
 
 
 #ejemplo carga de una imagen y almacenamiento en nube Rackspace

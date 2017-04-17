@@ -61,6 +61,10 @@ class Asignatura < ApplicationRecord
     self.joins(:enfoque_asignaturas).where(enfoque_asignaturas: {enfoque_id: enfoque}).paginate(:page => page, :per_page => per_page)
   end
 
+  def self.of_enfoque_area(area,page,per_page)
+    self.joins(:enfoque_asignaturas).where(asignaturas: {area_id: area}).paginate(:page => page, :per_page => per_page)
+  end
+
   def self.porcentaje_estudiante_tipologia(estudiante, tipologia,carrera)
 	num = self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{tipologia: tipologia}).count
 	dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{tipologia: tipologia}).count
@@ -71,6 +75,16 @@ class Asignatura < ApplicationRecord
 	num = self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{area_id: area}).count
 	dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{area_id: area}).count
 	res = num.to_f/dem.to_f * 100
+  end
+
+  def self.sugerencia_enfoque(page, per_page, estudiante,area,carrera)
+    p = self.porcentaje_estudiante_area(estudiante, area,carrera).to_f
+    t =HistoriaAcademica.promedio_area(area).to_f
+    if p  > 50
+      if t >= 4
+        self.of_enfoque_area(area,page,per_page)
+      end
+    end
   end
 
 end

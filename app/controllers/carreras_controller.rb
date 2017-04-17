@@ -38,6 +38,20 @@ class CarrerasController < ApplicationController
     @carrera.destroy
   end
 
+  def sugerenciaTrabajoGrado
+    @sugerTr = Carrera.sugerencia_trabajo_grado(params[:page,:per_page,:estudiante_id] )
+    if @sugerTr.empty?
+      render json:
+        { data:
+            {
+                error: "No Thesis"
+              }
+        }
+    else
+      render json: @sugerTr
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_carrera

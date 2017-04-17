@@ -9,4 +9,8 @@ class Estudiante < ApplicationRecord
   validates :creditos_inscritos, presence: true
   validates :creditos_pendientes, presence: true
 
+  def self.porcentaje_ca(estudiante)
+    self.joins(:historia_academicas).select("estudiantes.porcentaje_carrera").where(historia_academicas:{estudiante_id: estudiante}).uniq.pluck("porcentaje_carrera")
+  end
+
 end
