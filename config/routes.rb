@@ -21,39 +21,29 @@ Rails.application.routes.draw do
 
 
   resources :historia_academicas do
-    member do
-      get 'promedioArea'
+    collection do
+      get 'promedio_area/:area', to: "historia_academicas#promedioArea"
+      get 'promedio_tipologia/:tipologia', to: "historia_academicas#promedioTipologia"
     end
   end
 
-  resources :historia_academicas do
-    member do
-      get 'promedioTipologia'
-    end
-  end
 
   resources :asignaturas do
-    member do
-      get 'porcentajeTipologia'
+    collection do
+      get 'porcentaje_tipologia/:estudiante_id/:tipologia/:carrera_id', to: "asignaturas#porcentajeTipologia"
+      get 'porcentaje_area/:estudiante_id/:area_id/:carrera_id', to: "asignaturas#porcentajeArea"
+      get 'sugerencia_enfoque/:page/:per_page/:estudiante_id/:area_id/:carrera_id', to: "asignaturas#sugerenciaEnfoque"
+
     end
   end
 
-  resources :asignaturas do
-    member do
-      get 'porcentajeArea'
-    end
-  end
 
-  resources :asignaturas do
-    member do
-      get 'sugerenciaEnfoque'
-    end
-  end
 
   resources :carreras do
-    member do
-      get 'sugerenciaTrabajoGrado'
+    collection do
+      get 'sugerencia_tesis/:page/:per_page/:estudiante_id', to: "carreras#sugerenciaTrabajoGrado"
     end
   end
+
 
 end

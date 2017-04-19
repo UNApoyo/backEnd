@@ -38,8 +38,8 @@ class AsignaturasController < ApplicationController
     @asignatura.destroy
   end
   def porcentajeArea
-    @porcentaje_area = Asignatura.porcentaje_estudiante_area(params[:estudiante_id,:area_id,:carrera_id])
-    if @porcentaje_area.empty?
+    @porcentaje_area = Asignatura.porcentaje_estudiante_area(params[:estudiante_id][:area_id][:carrera_id])
+    if @porcentaje_area < 0
       render json:
         { data:
             {
@@ -51,8 +51,8 @@ class AsignaturasController < ApplicationController
     end
   end
   def porcentajeTipologia
-    @porcentaje_tipologia = Asignatura.porcentaje_estudiante_tipologia(params[:estudiante_id,:tipologia,:carrera_id])
-    if @porcentaje_tipologia.empty?
+    @porcentaje_tipologia = Asignatura.porcentaje_estudiante_tipologia(params[:estudiante_id][:tipologia][:carrera_id])
+    if @porcentaje_tipologia < 0.0
       render json:
         { data:
             {
@@ -65,7 +65,7 @@ class AsignaturasController < ApplicationController
   end
 
   def sugerenciaEnfoque
-    @sugerEn = Asignatura.sugerencia_enfoque(params[:page,:per_page,:estudiante_id,:area_id,:carrera_id] )
+    @sugerEn = Asignatura.sugerencia_enfoque(@page,@per_page,params[:estudiante_id],params[:area_id],params[:carrera_id])
     if @sugerEn.empty?
       render json:
         { data:

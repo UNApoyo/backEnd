@@ -39,7 +39,7 @@ class CarrerasController < ApplicationController
   end
 
   def sugerenciaTrabajoGrado
-    @sugerTr = Carrera.sugerencia_trabajo_grado(params[:page,:per_page,:estudiante_id] )
+    @sugerTr = Carrera.sugerencia_trabajo_grado(params[:page][:per_page][:estudiante_id] )
     if @sugerTr.empty?
       render json:
         { data:

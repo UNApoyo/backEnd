@@ -33,7 +33,7 @@ class Carrera < ApplicationRecord
 
   def self.sugerencia_trabajo_grado(page,per_page,estudiante)
      p = Estudiante.porcentaje_ca(estudiante)
-     if p[0] >= 56
+     if p[0] >= 60
        self.joins(:trabajo_grados).paginate(:page => page, :per_page => per_page)
      end
   end
