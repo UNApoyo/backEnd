@@ -1,5 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+un_estudiante:
+  porcentaje_carrera: 45
+  creditos_disponibles: 70
+  creditos_aprobados: 60
+  creditos_inscritos: 15
+  creditos_pendientes: 125
+  carrera: Ingenieria
+
 one:
   porcentaje_carrera: 1
   creditos_disponibles: 1

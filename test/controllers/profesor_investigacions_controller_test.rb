@@ -12,7 +12,7 @@ class ProfesorInvestigacionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create profesor_investigacion" do
     assert_difference('ProfesorInvestigacion.count') do
-      post profesor_investigacions_url, params: { profesor_investigacion: { investigacion_id: @profesor_investigacion.investigacion_id, profesor_id: @profesor_investigacion.profesor_id } }, as: :json
+      post profesor_investigacions_url, params: { profesor_investigacion: { grupo_investigacion_id: @profesor_investigacion.grupo_investigacion_id, profesor_id: @profesor_investigacion.profesor_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class ProfesorInvestigacionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update profesor_investigacion" do
-    patch profesor_investigacion_url(@profesor_investigacion), params: { profesor_investigacion: { investigacion_id: @profesor_investigacion.investigacion_id, profesor_id: @profesor_investigacion.profesor_id } }, as: :json
+    patch profesor_investigacion_url(@profesor_investigacion), params: { profesor_investigacion: { grupo_investigacion_id: @profesor_investigacion.grupo_investigacion_id, profesor_id: @profesor_investigacion.profesor_id } }, as: :json
     assert_response 200
   end
 

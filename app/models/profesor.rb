@@ -11,6 +11,6 @@ class Profesor < ApplicationRecord
 	end
 
 	def self.of_investigacion(investigacion,page,per_page)
-		self.joins(:profesor_investigacions).where(profesor_investigacions: {investigacion_id: investigacion}).paginate(:page => page, :per_page => per_page)
+		self.joins(:profesor_investigacions).where(profesor_investigacions: {grupo_investigacion_id: grupo_investigacion}).paginate(:page => page, :per_page => per_page)
 	end
 end

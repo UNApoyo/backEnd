@@ -1,5 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+un_carrera:
+  nombre: Ingenieria
+  creditos: 185
+  codigo: 2870
+
 one:
   nombre: MyString
   creditos: 1
