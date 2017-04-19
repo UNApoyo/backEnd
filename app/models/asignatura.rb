@@ -68,13 +68,21 @@ class Asignatura < ApplicationRecord
   def self.porcentaje_estudiante_tipologia(estudiante, tipologia,carrera)
 	   num = self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{tipologia: tipologia}).count
 	   dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{tipologia: tipologia}).count
-	   res = num/dem * 100
+     if dem > 0.0
+       res = num.to_f/dem.to_f * 100
+    else
+      res = -1
+    end
   end
 
   def self.porcentaje_estudiante_area(estudiante, area,carrera)
 	    num = self.joins(:historia_academicas).where(historia_academicas: {estudiante_id: estudiante}, asignaturas:{area_id: area}).count
 	    dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{area_id: area}).count
-	    res = num.to_f/dem.to_f * 100
+      if dem > 0.0
+        res = num.to_f/dem.to_f * 100
+      else
+        res = -1
+      end
   end
 
   def self.sugerencia_enfoque(page, per_page, estudiante,area,carrera)
@@ -82,7 +90,7 @@ class Asignatura < ApplicationRecord
     t =HistoriaAcademica.promedio_area(area).to_f
     if p  < 50
       if t >= 4
-        self.of_enfoque_area(area,page,per_page)
+        return self.of_enfoque_area(area,page,per_page)
       end
     end
   end
