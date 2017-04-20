@@ -38,6 +38,20 @@ class TrabajoGradosController < ApplicationController
     @trabajo_grado.destroy
   end
 
+  def sugerenciaTrabajoGrado
+    @sugerTr = TrabajoGrado.sugerencia_trabajo_grado(@page,@per_page,params[:estudiante_id] )
+    if @sugerTr.nil?
+      render json:
+        { data:
+            {
+                error: "No Thesis"
+              }
+        }
+    else
+      render json: @sugerTr
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_trabajo_grado

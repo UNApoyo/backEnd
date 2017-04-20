@@ -37,13 +37,10 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-  resources :carreras do
+  resources :trabajo_grados do
     collection do
-      get 'sugerencia_tesis/:page/:per_page/:estudiante_id', to: "carreras#sugerenciaTrabajoGrado"
+      get 'sugerencia_tesis/:page/:per_page/:estudiante_id', to: "trabajo_grados#sugerenciaTrabajoGrado"
     end
   end
-
 
 end

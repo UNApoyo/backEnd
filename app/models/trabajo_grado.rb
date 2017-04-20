@@ -13,4 +13,15 @@ class TrabajoGrado < ApplicationRecord
 		self.joins(:carrera).where(carreras: {nombre: carrera}).paginate(:page => page, :per_page => per_page)
 	end
 
+	def self.sugerencia_trabajo_grado(page,per_page,estudiante)
+		 p = Estudiante.porcentaje_ca(estudiante)
+		 if p[0].nil?
+			 return nil
+		 else
+			 if p[0] >= 56
+				 self.joins(:carrera).paginate(:page => page, :per_page => per_page).pluck("trabajo_grados.nombre")
+			 end
+		 end
+	end
+
 end

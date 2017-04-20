@@ -62,7 +62,7 @@ class Asignatura < ApplicationRecord
   end
 
   def self.of_enfoque_area(area,page,per_page)
-    self.joins(:enfoque_asignaturas).where(asignaturas: {area_id: area}).paginate(:page => page, :per_page => per_page)
+    self.joins(:enfoque_asignaturas).where(asignaturas: {area_id: area}).paginate(:page => page, :per_page => per_page).pluck("asignaturas.nombre")
   end
 
   def self.porcentaje_estudiante_tipologia(estudiante, tipologia,carrera)
