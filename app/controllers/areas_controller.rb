@@ -38,6 +38,20 @@ class AreasController < ApplicationController
     @area.destroy
   end
 
+  def porcentajes
+    @porcentajes = Area.all_porcentaje_area(params[:estudiante_id],params[:carrera_id])
+    if @porcentajes == -1
+      render json:
+        { data:
+            {
+                error: "No estas viendo materias de esta area"
+              }
+        }
+    else
+      render json: @porcentajes
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_area

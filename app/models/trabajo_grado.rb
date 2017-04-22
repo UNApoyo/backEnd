@@ -1,6 +1,6 @@
 class TrabajoGrado < ApplicationRecord
-	has_many :profesor_investigacions, dependent: :destroy
-	has_many :profesors, through: :profesor_investigacions
+	has_many :profesor_grados, dependent: :destroy
+	has_many :profesors, through: :profesor_grados
 	belongs_to :carrera
 
   validates :nombre, presence: true
@@ -19,7 +19,7 @@ class TrabajoGrado < ApplicationRecord
 			 return nil
 		 else
 			 if p[0] >= 56
-				 self.joins(:carrera).paginate(:page => page, :per_page => per_page).pluck("trabajo_grados.nombre")
+				 self.joins(:carrera, :profesors).paginate(:page => page, :per_page => per_page).pluck("trabajo_grados.nombre,profesors.nombre")
 			 end
 		 end
 	end

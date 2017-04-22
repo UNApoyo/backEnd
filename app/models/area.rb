@@ -17,4 +17,21 @@ class Area < ApplicationRecord
 		self.joins(:area_investigacions).where(area_investigacions: {grupo_investigacion_id: id}).paginate(:page => page, :per_page => per_page)
 	end
 
+	def self.all_porcentaje_area(estudiante,carrera)
+    num_areas = CarreraAsignatura.where(carrera_id:carrera).count
+		q = Array.new(num_areas)
+    for i in 1..num_areas+1
+			p = Array.new
+      p.push( Asignatura.porcentaje_estudiante_area(estudiante, i ,carrera))
+			if p.push(self.joins(:asignaturas).where(asignaturas:{area_id:i}).distinct.pluck("nombre"))[0].nil?
+			else
+				q.push(p)
+			end
+    end
+		if q[0].nil?
+			q.delete(q[0])
+		end
+		q
+  end
+
 end

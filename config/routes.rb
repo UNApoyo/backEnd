@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :requisito_asignaturas
   resources :area_investigacions
-  resources :areas
-  resources :historia_academicas
+
+  #resources :historia_academicas
   resources :carrera_investigacions
   resources :carrera_asignaturas
   resources :carreras
@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   resources :grupo_investigacions
   resources :profesor_grados
   resources :profesors
-  resources :trabajo_grados
+  #resources :trabajo_grados
   resources :enfoque_asignaturas
   resources :enfoques
-  resources :asignaturas
+  #resources :asignaturas
   resources :prerequisitos
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -22,16 +22,16 @@ Rails.application.routes.draw do
 
   resources :historia_academicas do
     collection do
-      get 'promedio_area/:area', to: "historia_academicas#promedioArea"
-      get 'promedio_tipologia/:tipologia', to: "historia_academicas#promedioTipologia"
+      get 'promedio_area', to: "historia_academicas#promedioArea"
+      get 'promedio_tipologia', to: "historia_academicas#promedioTipologia"
     end
   end
 
 
   resources :asignaturas do
     collection do
-      get 'porcentaje_tipologia/:estudiante_id/:tipologia/:carrera_id', to: "asignaturas#porcentajeTipologia"
-      get 'porcentaje_area/:estudiante_id/:area_id/:carrera_id', to: "asignaturas#porcentajeArea"
+      get 'porcentaje_tipologia', to: "asignaturas#porcentajeTipologia"
+      get 'porcentaje_area', to: "asignaturas#porcentajeArea"
       get 'sugerencia_enfoque/:page/:per_page/:estudiante_id/:area_id/:carrera_id', to: "asignaturas#sugerenciaEnfoque"
 
     end
@@ -40,6 +40,11 @@ Rails.application.routes.draw do
   resources :trabajo_grados do
     collection do
       get 'sugerencia_tesis/:page/:per_page/:estudiante_id', to: "trabajo_grados#sugerenciaTrabajoGrado"
+    end
+  end
+  resources :areas do
+    collection do
+      get 'porcentajes', to: "areas#porcentajes"
     end
   end
 
