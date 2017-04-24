@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class CarreraAsignaturaTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+    test '#carrera_asignaturas' do
+      assert_equal 2, CarreraAsignatura.count 
+    end
 end

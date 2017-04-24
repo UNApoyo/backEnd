@@ -1,5 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+un_grupo:
+  nombre: Mi Grupito
+
 one:
   nombre: MyString
 

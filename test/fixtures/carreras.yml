@@ -7,10 +7,10 @@ un_carrera:
 
 one:
   nombre: MyString
-  creditos: 1
-  codigo: 1
+  creditos: 190
+  codigo: 2871
 
 two:
   nombre: MyString
-  creditos: 1
-  codigo: 1
+  creditos: 200
+  codigo: 2872

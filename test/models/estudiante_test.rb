@@ -10,4 +10,8 @@ class EstudianteTest < ActiveSupport::TestCase
       estudiante = @estudiante
   		assert_not estudiante.save
   end
+
+    test '#estudiantes' do
+      assert_equal 3, Estudiante.count 
+    end
 end

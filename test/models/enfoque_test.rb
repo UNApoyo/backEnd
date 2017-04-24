@@ -10,4 +10,8 @@ class EnfoqueTest < ActiveSupport::TestCase
     enfoque = @enfoque
   	assert_not enfoque.save
   end
+
+  test '#enfoques' do
+      assert_equal 3, Enfoque.count 
+  end
 end

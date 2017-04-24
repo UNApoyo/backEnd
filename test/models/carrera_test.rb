@@ -24,4 +24,8 @@ class CarreraTest < ActiveSupport::TestCase
     carrera= @carrera
     assert_not carrera.valid?
   end
+
+  test '#carreras' do
+      assert_equal 3, Carrera.count 
+  end
 end

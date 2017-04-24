@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 un_area:
-  nombre: Fisica
+  nombre: Matematicas
 
 one:
   nombre: MyString

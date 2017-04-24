@@ -11,12 +11,12 @@ one:
   nombre: MyString
   creditos: 1
   tipologia: MyString
-  codigo: 1
+  codigo: 1000005
   area: one
 
 two:
   nombre: MyString
-  creditos: 1
+  creditos: 2
   tipologia: MyString
-  codigo: 1
+  codigo: 1000004
   area: two

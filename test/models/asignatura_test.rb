@@ -17,4 +17,8 @@ class AsignaturaTest < ActiveSupport::TestCase
       asignatura = @asignatura
   		assert_not asignatura.save
   end
+
+  test '#asignaturas' do
+      assert_equal 3, Asignatura.count
+  end
 end

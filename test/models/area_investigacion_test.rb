@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class AreaInvestigacionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+    test '#area:investigacions' do
+      assert_equal 2, AreaInvestigacion.count
+    end
 end

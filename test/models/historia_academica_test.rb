@@ -5,4 +5,7 @@ class HistoriaAcademicaTest < ActiveSupport::TestCase
   #   assert true
   # end
 
+    test '#historia_academicas' do
+      assert_equal 3, HistoriaAcademica.count 
+    end
 end

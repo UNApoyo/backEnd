@@ -1,5 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+un_profesor:
+  nombre: Pedro Pancacio
+  info: 0f 311 - 204
+
 one:
   nombre: MyString
   info: MyString

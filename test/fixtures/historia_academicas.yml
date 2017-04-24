@@ -6,11 +6,11 @@ un_historia:
   estudiante: one
 
 one:
-  calificacion: 9.99
+  calificacion: 1.99
   asignatura: one
   estudiante: one
 
 two:
-  calificacion: 9.99
+  calificacion: 2.99
   asignatura: two
   estudiante: two
