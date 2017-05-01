@@ -31,7 +31,7 @@ class Area < ApplicationRecord
 		if q[0].nil?
 			q.delete(q[0])
 		end
-		q
+		q.sort()
   end
 
 end

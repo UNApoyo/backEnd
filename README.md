@@ -47,3 +47,40 @@ Profesor:
 
   RequisitoAsignatura:
     of_asignatura(id asignatura)   <-prerequisitos de una asignatura
+
+RUTAS
+
+historia_academicas
+
+    localhost:3000/historia_academicas/promedio_area
+    localhost:3000/historia_academicas/promedio_area?area_id=1 -> ejemplo
+
+    localhost:3000/historia_academicas/promedio_tipologia
+    localhost:3000/historia_academicas/promedio_tipologia?tipologia="Fundamentacion" -> ejemplo
+
+    localhost:3000/historia_academicas/best_calificacion
+
+    localhost:3000/historia_academicas/worst_calificacion
+
+
+asignaturas
+
+    localhost:3000/asignaturas/porcentaje_tipologia
+    localhost:3000/asignaturas/porcentaje_tipologia?estudiante_id=1&tipologia="Fundamentación"&carrera_id=1 -> ejemplo
+
+    localhost:3000/asignaturas/porcentaje_area
+    localhost:3000/asignaturas/porcentaje_area?estudiante_id=1&area_id=1&carrera_id=1 -> ejemplo
+
+    localhost:3000/asignaturas/sugerencia_enfoque/:page/:per_page/:estudiante_id/:area_id/:carrera_id
+
+
+
+trabajo_grados
+
+    localhost:3000/trabajo_grados/sugerencia_tesis/:page/:per_page/:estudiante_id
+
+
+areas
+
+    localhost:3000/areas/porcentajes
+    localhost:3000/areas/porcentajes?estudiante_id=1&carrera_id=1
