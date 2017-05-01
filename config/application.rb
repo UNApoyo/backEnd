@@ -1,5 +1,5 @@
 require_relative 'boot'
-
+require 'rack/throttle'
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
@@ -26,5 +26,7 @@ module BackEnd
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    # config/application.rb
+    config.middleware.use Rack::Throttle::Interval
   end
 end

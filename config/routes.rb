@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     collection do
       get 'promedio_area', to: "historia_academicas#promedioArea"
       get 'promedio_tipologia', to: "historia_academicas#promedioTipologia"
+      get 'best_calificacion', to: "historia_academicas#bestCalificacion"
+      get 'worst_calificacion', to: "historia_academicas#worstCalificacion"
     end
   end
 

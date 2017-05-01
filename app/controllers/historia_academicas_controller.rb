@@ -66,6 +66,36 @@ class HistoriaAcademicasController < ApplicationController
     end
   end
 
+  def bestCalificacion
+    @best = HistoriaAcademica.best_calificacion
+    if @best < 0
+      render json:
+      {
+        data:
+        {
+          error: "No grade"
+        }
+      }
+    else
+      render json: @best
+    end
+  end
+
+  def worstCalificacion
+    @worst = HistoriaAcademica.worst_calificacion
+    if @worst < 0
+      render json:
+      {
+        data:
+        {
+          error: "No grade"
+        }
+      }
+    else
+      render json: @worst
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_historia_academica

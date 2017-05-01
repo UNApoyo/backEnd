@@ -8,12 +8,12 @@ class HistoriaAcademica < ApplicationRecord
   validates :calificacion, inclusion: { in: 0..5}
 
 
-	def self.best_calificacion(page, per_page)
-		self.select("calificacion").where("calificacion > 3.0 ").paginate(:page => page, :per_page => per_page)
+	def self.best_calificacion
+		self.select("calificacion").where("calificacion > 3.0 ").paginate(:page => 1, :per_page => 20)
 	end
 
-	def self.worst_calificacion(page, per_page)
-		self.select("calificacion").where("calificacion < 3.0 ").paginate(:page => page, :per_page => per_page)
+	def self.worst_calificacion
+		self.select("calificacion").where("calificacion < 3.0 ").paginate(:page => 1, :per_page => 20)
 	end
 
   def self.calificaciones_tipologia(tipologia,page, per_page)
