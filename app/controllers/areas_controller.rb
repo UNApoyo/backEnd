@@ -52,6 +52,11 @@ class AreasController < ApplicationController
     end
   end
 
+  def get_areas
+    @areas = Area.get_areas(params[:column])
+    render json: @areas
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_area

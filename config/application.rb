@@ -27,6 +27,6 @@ module BackEnd
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     # config/application.rb
-    config.middleware.use Rack::Throttle::Interval
+    config.middleware.use Rack::Throttle::Hourly,   :max => 1000
   end
 end

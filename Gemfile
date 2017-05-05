@@ -8,6 +8,7 @@ end
 gem 'nokogiri', '>= 1.6.7'
 gem 'will_paginate', '~> 3.1.1'
 gem "fog"
+gem 'rack-throttle'
 gem 'carrierwave', '~> 1.0'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'faker'
