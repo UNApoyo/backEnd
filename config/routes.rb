@@ -34,14 +34,14 @@ Rails.application.routes.draw do
     collection do
       get 'porcentaje_tipologia', to: "asignaturas#porcentajeTipologia"
       get 'porcentaje_area', to: "asignaturas#porcentajeArea"
-      get 'sugerencia_enfoque/:page/:per_page/:estudiante_id/:area_id/:carrera_id', to: "asignaturas#sugerenciaEnfoque"
+      get 'sugerencia_enfoque', to: "asignaturas#sugerenciaEnfoque"
 
     end
   end
 
   resources :trabajo_grados do
     collection do
-      get 'sugerencia_tesis/:page/:per_page/:estudiante_id', to: "trabajo_grados#sugerenciaTrabajoGrado"
+      get 'sugerencia_tesis', to: "trabajo_grados#sugerenciaTrabajoGrado"
     end
   end
   resources :areas do
