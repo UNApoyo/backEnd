@@ -18,11 +18,16 @@ class Area < ApplicationRecord
 	end
 
 	def self.all_porcentaje_area(estudiante,carrera)
-    num_areas = CarreraAsignatura.where(carrera_id:carrera).count
+    num_areas = CarreraAsignatura.select("asignatura_id").where(carrera_id:carrera).uniq.count
+		puts(num_areas)
 		q = Array.new(num_areas)
     for i in 1..num_areas+1
 			p = Array.new
-      p.push( Asignatura.porcentaje_estudiante_area(estudiante, i ,carrera))
+			if Asignatura.porcentaje_estudiante_area(estudiante, i ,carrera) == -1
+				p.push(0.0)
+			else
+      	p.push( Asignatura.porcentaje_estudiante_area(estudiante, i ,carrera))
+			end
 			if p.push(self.joins(:asignaturas).where(asignaturas:{area_id:i}).distinct.pluck("nombre"))[0].nil?
 			else
 				q.push(p)
@@ -31,7 +36,7 @@ class Area < ApplicationRecord
 		if q[0].nil?
 			q.delete(q[0])
 		end
-		q.sort()
+		q
   end
 
 end
