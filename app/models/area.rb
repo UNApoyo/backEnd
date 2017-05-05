@@ -6,8 +6,10 @@ class Area < ApplicationRecord
 	validates :nombre, presence: true#, uniqueness: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create}
 
 	def self.get_areas(column)
-		if column == "nombre"
+		if column == "-nombre"
 	  	self.order(nombre: :desc).paginate(:page => 1, :per_page => 20)
+		elseif column == "nombre"
+			self.order(nombre: :asc).paginate(:page => 1, :per_page => 20)
 		else
 			puts "wrong select"
 		end
@@ -21,25 +23,38 @@ class Area < ApplicationRecord
 		self.joins(:area_investigacions).where(area_investigacions: {grupo_investigacion_id: id}).paginate(:page => page, :per_page => per_page)
 	end
 
-	def self.all_porcentaje_area(estudiante,carrera)
-   num_areas = CarreraAsignatura.select("asignatura_id").where(carrera_id:carrera).distinct.count
-        q = Array.new(num_areas)
-   for i in 1..num_areas+1
+	def self.all_porcentaje_area(estudiante,carrera,sort)
+	 num_areas = Asignatura.includes(:carrera_asignaturas).select(:area_id).where(carrera_asignaturas:{carrera_id:carrera}).distinct.count
+	 areas_carrera = Asignatura.includes(:carrera_asignaturas).where(carrera_asignaturas:{carrera_id:carrera}).select(:area_id).distinct.pluck("area_id")
+	 puts(areas_carrera)
+	 arri = Array.new(num_areas)
+	 other = Array.new(num_areas)
+   for i in 1..num_areas
             p = Array.new
-            if Asignatura.porcentaje_estudiante_area(estudiante, i ,carrera) == -1
+						print(areas_carrera[i-1])
+            if Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i-1] ,carrera) == -1
                 p.push(0.0)
             else
-         p.push( Asignatura.porcentaje_estudiante_area(estudiante, i ,carrera))
+         				p.push( Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i-1] ,carrera))
             end
-            if p.push(self.joins(:asignaturas).where(asignaturas:{area_id:i}).distinct.pluck("nombre"))[0].nil?
+            if p.push(self.joins(:asignaturas).where(asignaturas:{area_id:areas_carrera[i-1]}).distinct.pluck("nombre"))[0].nil?
             else
-                q.push(p)
+              arri.push(p)
             end
-   end
-        if q[0].nil?
-            q.delete(q[0])
-        end
-        q
+  	end
+		if arri[0].nil?
+			arri.delete(arri[0])
+		end
+
+		if srt == "-porcentajes"
+			arri.sort().reverse
+		elsif srt == "porcentajes"
+			arri.sort()
+		else
+			arri
+		end
+
+
 
  end
 
