@@ -18,7 +18,7 @@ class Area < ApplicationRecord
 	end
 
 	def self.all_porcentaje_area(estudiante,carrera)
-    num_areas = CarreraAsignatura.select("asignatura_id").where(carrera_id:carrera).uniq.count
+    num_areas = CarreraAsignatura.where(carrera_id:carrera)
 		puts(num_areas)
 		q = Array.new(num_areas)
     for i in 1..num_areas+1

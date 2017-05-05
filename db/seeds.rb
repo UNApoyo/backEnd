@@ -30,7 +30,7 @@
   Asignatura.create(nombre:'Arquitectura de Software',creditos: 3,tipologia:'Disciplinar',codigo:2016716,area_id:6)
   Asignatura.create(nombre:'Arquitectura de Infraestructura y Gobierno de Tics',creditos: 3,tipologia:'Disciplinar',codigo:2025983,area_id:7)
   Asignatura.create(nombre:'Bases de Datos',creditos: 3,tipologia:'Disciplinar',codigo:2016353,area_id:7)
-  Asignatura.create(nombre:'Bilogia General',creditos: 3,tipologia:'Fundamentacion',codigo:1000009,area_id:13)
+  Asignatura.create(nombre:'Biologia General',creditos: 3,tipologia:'Fundamentacion',codigo:1000009,area_id:13)
   Asignatura.create(nombre:'Calculo de Ecuaciones Diferenciales',creditos: 4,tipologia:'Fundamentacion',codigo:2016342,area_id:1)
   Asignatura.create(nombre:'Calculo Diferencial',creditos: 4,tipologia:'Fundamentacion',codigo:1000004,area_id:1)
   Asignatura.create(nombre:'Calculo Diferencial en una Variable',creditos: 4,tipologia:'Fundamentacion',codigo:2016377,area_id:1)
