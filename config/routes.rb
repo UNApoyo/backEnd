@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :areas do
     collection do
       get 'porcentajes', to: "areas#porcentajes"
+      get 'get_areas', to: "areas#get_areas"
     end
   end
 

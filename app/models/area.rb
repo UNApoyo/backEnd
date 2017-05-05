@@ -5,8 +5,12 @@ class Area < ApplicationRecord
 
 	validates :nombre, presence: true#, uniqueness: true#, format:{with: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/, on: :create}
 
-	def self.get_areas(page,per_page)
-	  self.select("nombre").paginate(:page => page, :per_page => per_page)
+	def self.get_areas(column)
+		if column == "nombre"
+	  	self.order(nombre: :desc).paginate(:page => 1, :per_page => 20)
+		else
+			puts "wrong select"
+		end
 	end
 
 	def self.of_asignatura(asignatura,page,per_page)
