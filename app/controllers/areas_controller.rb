@@ -39,7 +39,8 @@ class AreasController < ApplicationController
   end
 
   def porcentajes
-    @porcentajes = Area.all_porcentaje_area(params[:estudiante_id],params[:carrera_id])
+    @porcentajes = Area.all_porcentaje_area(params[:estudiante_id],params[:carrera_id],params[:sort])
+    arr  = @porcentajes
     if @porcentajes == -1
       render json:
         { data:
@@ -48,7 +49,7 @@ class AreasController < ApplicationController
               }
         }
     else
-      render json: @porcentajes
+      render json:@porcentajes 
     end
   end
 
