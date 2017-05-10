@@ -68,7 +68,7 @@ class HistoriaAcademicasController < ApplicationController
 
   def bestCalificacion
     @best = HistoriaAcademica.best_calificacion
-    if @best < 0
+    if @best.nil?
       render json:
       {
         data:

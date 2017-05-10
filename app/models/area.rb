@@ -10,8 +10,7 @@ class Area < ApplicationRecord
 	  	self.order(nombre: :desc).paginate(:page => 1, :per_page => 20)
 		elseif column == "nombre"
 			self.order(nombre: :asc).paginate(:page => 1, :per_page => 20)
-		else
-			puts "wrong select"
+
 		end
 	end
 
@@ -26,31 +25,53 @@ class Area < ApplicationRecord
 	def self.all_porcentaje_area(estudiante,carrera,sort)
 	 num_areas = Asignatura.includes(:carrera_asignaturas).select(:area_id).where(carrera_asignaturas:{carrera_id:carrera}).distinct.count
 	 areas_carrera = Asignatura.includes(:carrera_asignaturas).where(carrera_asignaturas:{carrera_id:carrera}).select(:area_id).distinct.pluck("area_id")
-	 puts(areas_carrera)
-	 arri = Array.new(num_areas)
-	 other = Array.new(num_areas)
-   for i in 1..num_areas
-            p = Array.new
-						print(areas_carrera[i-1])
-            if Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i-1] ,carrera) == -1
-                p.push(0.0)
-            else
-         				p.push( Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i-1] ,carrera))
-            end
-            if p.push(self.joins(:asignaturas).where(asignaturas:{area_id:areas_carrera[i-1]}).distinct.pluck("nombre"))[0].nil?
-            else
-              arri.push(p)
-            end
-  	end
-		if arri[0].nil?
-			arri.delete(arri[0])
-		end
 
-		if srt == "-porcentajes"
-			arri.sort().reverse
-		elsif srt == "porcentajes"
-			arri.sort()
+	 dict = {}
+	 arri = {}
+	 nombre = Array.new
+	 porcentaje = Array.new
+	 sorted = Array.new
+	 reversed = Array.new
+
+	 for i in 1..num_areas
+		 p = Array.new
+
+     if Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i-1] ,carrera) == -1
+      	p.push(0.0)
+     else
+        p.push( Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i-1] ,carrera))
+     end
+
+		 if p.push(self.joins(:asignaturas).where(asignaturas:{area_id:areas_carrera[i-1]}).distinct.pluck("nombre")[0]).nil?
+     else
+       nombre.push(p[1])
+			 porcentaje.push(p[0])
+			 dict[p[1]] = p[0]
+     end
+
+  	end
+
+    if sort == "-porcentajes"
+			r = porcentaje.sort().reverse
+			arri['porcentaje'] = r
+			for i in 0..r.length-1
+				reversed.push(dict.key(r[i]))
+			end
+			arri['nombre'] = reversed.compact
+			arri
+
+		elsif sort == "porcentajes"
+			s = porcentaje.sort()
+			arri['porcentaje'] = s
+			for i in 0..s.length-1
+				sorted.push(dict.key(s[i]))
+			end
+			arri['nombre'] = sorted.compact
+			arri
+
 		else
+			arri['nombre'] = nombre.compact
+			arri['porcentaje'] = porcentaje.compact
 			arri
 		end
 
