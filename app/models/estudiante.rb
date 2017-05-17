@@ -13,8 +13,8 @@ class Estudiante < ApplicationRecord
     self.joins(:historia_academicas).select("estudiantes.porcentaje_carrera").where(historia_academicas:{estudiante_id: estudiante}).uniq.pluck("porcentaje_carrera")
   end
 
-  def self.ph()
-    texto= "
+  def self.procesar_historia(texto)
+    texto="
 seleccione el rol de usuario
 ESTUDIANTE
 Diana Carolina Navarrete Ramirez
@@ -389,5 +389,6 @@ Actualizado: 1 de Marzo de 2017 | Todos los derechos reservados ©Universidad Na
                             estudiante_id:ide)
       end
     end
+    ide
   end
 end

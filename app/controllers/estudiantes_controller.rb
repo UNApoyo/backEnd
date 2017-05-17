@@ -24,6 +24,10 @@ class EstudiantesController < ApplicationController
     end
   end
 
+#  def historializar
+#    @historializar =Estudiante.procesar_historia()
+#  end
+
   # PATCH/PUT /estudiantes/1
   def update
     if @estudiante.update(estudiante_params)

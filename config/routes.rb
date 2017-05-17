@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :carrera_investigacions
   resources :carrera_asignaturas
   resources :carreras
-  resources :estudiantes
+  #resources :estudiantes
   resources :profesor_investigacions
   resources :grupo_investigacions
   resources :profesor_grados
@@ -28,7 +28,6 @@ Rails.application.routes.draw do
       get 'worst_calificacion', to: "historia_academicas#worstCalificacion"
     end
   end
-
 
   resources :asignaturas do
     collection do
