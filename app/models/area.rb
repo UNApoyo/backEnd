@@ -26,10 +26,13 @@ class Area < ApplicationRecord
 	 num_areas = Asignatura.includes(:carrera_asignaturas).select(:area_id).where(carrera_asignaturas:{carrera_id:carrera}).distinct.count
 	 areas_carrera = Asignatura.includes(:carrera_asignaturas).where(carrera_asignaturas:{carrera_id:carrera}).select(:area_id).distinct.pluck("area_id")
 
+	 counter_re = 0
+	 counter_so = 0
 	 dict = {}
 	 arri = {}
 	 nombre = Array.new
 	 porcentaje = Array.new
+	 nombre_cero = Array.new
 	 sorted = Array.new
 	 reversed = Array.new
 
@@ -47,6 +50,9 @@ class Area < ApplicationRecord
        nombre.push(p[1])
 			 porcentaje.push(p[0])
 			 dict[p[1]] = p[0]
+			 if p[0] == 0.0
+				 nombre_cero.push(p[1])
+			 end
      end
 
   	end
@@ -55,7 +61,12 @@ class Area < ApplicationRecord
 			r = porcentaje.sort().reverse
 			arri['porcentaje'] = r
 			for i in 0..r.length-1
-				reversed.push(dict.key(r[i]))
+				if r[i] == 0.0
+					reversed.push(nombre_cero[counter_re])
+					counter_re = counter_re + 1
+				else
+					reversed.push(dict.key(r[i]))
+				end
 			end
 			arri['nombre'] = reversed.compact
 			arri
@@ -64,19 +75,20 @@ class Area < ApplicationRecord
 			s = porcentaje.sort()
 			arri['porcentaje'] = s
 			for i in 0..s.length-1
-				sorted.push(dict.key(s[i]))
+				if s[i] == 0.0
+					sorted.push(nombre_cero[counter_so])
+					counter_so = counter_so + 1
+				else
+					sorted.push(dict.key(s[i]))
+				end
 			end
 			arri['nombre'] = sorted.compact
 			arri
-
 		else
 			arri['nombre'] = nombre.compact
 			arri['porcentaje'] = porcentaje.compact
 			arri
 		end
-
-
-
  end
 
 end
