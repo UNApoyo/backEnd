@@ -78,6 +78,21 @@ class AsignaturasController < ApplicationController
     end
   end
 
+  def porcentaje
+    @porcentaje = Asignatura.all_porcentaje_tipologia(params[:estudiante_id],params[:carrera_id],params[:sort])
+
+    if @porcentaje.nil?
+      render json:
+        { data:
+            {
+                error: "No estas viendo materias "
+              }
+        }
+    else
+      render json:@porcentaje
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_asignatura

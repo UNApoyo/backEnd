@@ -30,17 +30,105 @@ class HistoriaAcademica < ApplicationRecord
     self.joins(:asignatura).select("creditos").paginate(:page => page, :per_page => per_page).where(asignaturas: {area_id: area})
   end
 
-  def self.promedio_tipologia(tipologia)
-    sum = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia}).sum("calificacion")
-    num = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia}).count
-    prom = sum/num
+  def self.promedio_tipologia(tipologia,estudiante)
+    sum = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia},historia_academicas: {estudiante_id: estudiante}).sum("calificacion")
+    num = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia},historia_academicas: {estudiante_id: estudiante}).count
+    if num > 0.0
+      res = sum.to_f/num.to_f
+    else
+     res = 0.0
+   end
   end
 
-  def self.promedio_area(area)
-    sum = self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area}).sum("calificacion")
-    num = self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area}).count
-    prom = sum/num
+  def self.promedio_area(area,estudiante)
+    sum = self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area},historia_academicas: {estudiante_id: estudiante}).sum("calificacion")
+    num = self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area},historia_academicas: {estudiante_id: estudiante}).count
+    if num > 0.0
+      res = sum.to_f/num.to_f
+   else
+     res = 0.0
+   end
   end
+
+
+
+
+
+  def self.all_promedio_area(estudiante,carrera,sort)
+   num_areas = Asignatura.includes(:carrera_asignaturas).select(:area_id).where(carrera_asignaturas:{carrera_id:carrera}).distinct.count
+   areas_carrera = Asignatura.includes(:carrera_asignaturas).where(carrera_asignaturas:{carrera_id:carrera}).select(:area_id).distinct.pluck("area_id")
+
+   counter_re = 0
+   counter_so = 0
+   dict = {}
+   arri = {}
+   nombre = Array.new
+   porcentaje = Array.new
+   nombre_cero = Array.new
+   sorted = Array.new
+   reversed = Array.new
+
+   for i in 1..num_areas
+     p = Array.new
+
+     if self.promedio_area(estudiante, areas_carrera[i-1] ) == -1
+        p.push(0.0)
+     else
+        p.push( Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i-1] ,carrera))
+     end
+
+     if p.push(self.joins(:asignaturas).where(asignaturas:{area_id:areas_carrera[i-1]}).distinct.pluck("nombre")[0]).nil?
+     else
+       nombre.push(p[1])
+       porcentaje.push(p[0])
+       dict[p[1]] = p[0]
+       if p[0] == 0.0
+         nombre_cero.push(p[1])
+       end
+     end
+
+    end
+
+    if sort == "-porcentajes"
+      r = porcentaje.sort().reverse
+      arri['porcentaje'] = r
+      for i in 0..r.length-1
+        if r[i] == 0.0
+          reversed.push(nombre_cero[counter_re])
+          counter_re = counter_re + 1
+        else
+          reversed.push(dict.key(r[i]))
+        end
+      end
+      arri['nombre'] = reversed.compact
+      arri
+
+    elsif sort == "porcentajes"
+      s = porcentaje.sort()
+      arri['porcentaje'] = s
+      for i in 0..s.length-1
+        if s[i] == 0.0
+          sorted.push(nombre_cero[counter_so])
+          counter_so = counter_so + 1
+        else
+          sorted.push(dict.key(s[i]))
+        end
+      end
+      arri['nombre'] = sorted.compact
+      arri
+    else
+      arri['nombre'] = nombre.compact
+      arri['porcentaje'] = porcentaje.compact
+      arri
+    end
+  end
+
+
+
+
+
+
+
 #  def self.sugerencia_trabajo_grado(page,per_page)
 
 

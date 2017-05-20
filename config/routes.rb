@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get 'porcentaje_tipologia', to: "asignaturas#porcentajeTipologia"
       get 'porcentaje_area', to: "asignaturas#porcentajeArea"
       get 'sugerencia_enfoque', to: "asignaturas#sugerenciaEnfoque"
+      get 'porcentaje', to: "asignaturas#porcentaje" 
 
     end
   end

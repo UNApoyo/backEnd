@@ -95,4 +95,99 @@ class Asignatura < ApplicationRecord
     end
   end
 
+  def self.all_porcentaje_tipologia(estudiante,carrera,sort)
+
+      dict = {}
+      arri = {}
+      tip_cero = Array.new
+      tipologia = Array.new
+      porcentaje = Array.new
+      reversed = Array.new
+      sorted = Array.new
+      preversed = Array.new
+      psorted = Array.new
+      rcounter = 0
+      scounter = 0
+
+      fundamentacion = Asignatura.porcentaje_estudiante_tipologia(estudiante,carrera,'Fundamentacion')
+      libre = Asignatura.porcentaje_estudiante_tipologia(estudiante,carrera,'Libre')
+      disciplinar = Asignatura.porcentaje_estudiante_tipologia(estudiante,carrera,'Disciplinar')
+
+      if libre == -1
+        libre = 0.0
+        tip_cero.push('libre')
+      end
+
+      if fundamentacion == -1
+        fundamentacion = 0.0
+        tip_cero.push('fundamentacion')
+      end
+
+      if disciplinar == -1
+        disciplinar = 0.0
+        tip_cero.push('disciplinar')
+      end
+
+      arri['Fundamentacion'] = fundamentacion
+      arri['Disciplinar'] = disciplinar
+      arri['Libre'] = libre
+
+      porcentaje.push(fundamentacion)
+      porcentaje.push(disciplinar)
+      porcentaje.push(libre)
+
+      tipologia.push('Fundamentacion')
+      tipologia.push('Disciplinar')
+      tipologia.push('Libre')
+
+      if sort == '-tipologia'
+        rt = tipologia.sort().reverse
+        dict['tipologia'] = rt
+        for i in 0..2
+          reversed.push(arri[rt[i]])
+        end
+        dict['porcentaje'] = reversed
+        dict
+      elsif sort == 'tipologia'
+        rt = tipologia.sort()
+        dict['tipologia'] = rt
+        for i in 0..2
+          sorted.push(arri[rt[i]])
+        end
+        dict['porcentaje'] = sorted
+        dict
+      elsif sort == '-porcentajes'
+        rt = porcentaje.sort().reverse
+        dict['tipologia'] = rt
+        for i in 0..2
+          if rt[i] == 0.0
+            preversed.push(tip_cero[rcounter])
+            rcounter = rcounter + 1
+          else
+            preversed.push(arri.key(rt[i]))
+          end
+        end
+        dict['porcentaje'] = preversed
+        dict
+      elsif sort == 'porcentajes'
+        rt = porcentaje.sort()
+        dict['tipologia'] = rt
+        for i in 0..2
+          if rt[i] == 0.0
+            psorted.push(tip_cero[scounter])
+            scounter = scounter + 1
+          else
+            psorted.push(arri.key(rt[i]))
+          end
+        end
+        dict['porcentaje'] = psorted
+        dict
+      else
+        dict['tipologia'] = tipologia
+        dict['porcentaje'] = porcentaje
+        dict
+      end
+
+  end
+
 end
