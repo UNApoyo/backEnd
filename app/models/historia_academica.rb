@@ -102,7 +102,7 @@ class HistoriaAcademica < ApplicationRecord
         for i in 0..2
           reversed.push(arri[rt[i]])
         end
-        dict['porcentaje'] = reversed
+        dict['promedio'] = reversed
         dict
       elsif sort == 'tipologia'
         rt = tipologia.sort()
@@ -110,11 +110,11 @@ class HistoriaAcademica < ApplicationRecord
         for i in 0..2
           sorted.push(arri[rt[i]])
         end
-        dict['porcentaje'] = sorted
+        dict['promedio'] = sorted
         dict
-      elsif sort == '-porcentajes'
+      elsif sort == '-promedio'
         rt = porcentaje.sort().reverse
-        dict['porcentaje'] = rt
+        dict['promedio'] = rt
         for i in 0..2
           if rt[i] == 0.0
             preversed.push(tip_cero[rcounter])
@@ -125,9 +125,9 @@ class HistoriaAcademica < ApplicationRecord
         end
         dict['tipologia'] = preversed
         dict
-      elsif sort == 'porcentajes'
+      elsif sort == 'promedio'
         rt = porcentaje.sort()
-        dict['porcentaje'] = rt
+        dict['promedio'] = rt
         for i in 0..2
           if rt[i] == 0.0
             psorted.push(tip_cero[scounter])
@@ -140,7 +140,7 @@ class HistoriaAcademica < ApplicationRecord
         dict
       else
         dict['tipologia'] = tipologia
-        dict['porcentaje'] = porcentaje
+        dict['promedio'] = porcentaje
         dict
       end
 
@@ -182,9 +182,9 @@ class HistoriaAcademica < ApplicationRecord
 
     end
 
-    if sort == "-porcentajes"
+    if sort == "-promedio"
       r = porcentaje.sort().reverse
-      arri['porcentaje'] = r
+      arri['promedio'] = r
       for i in 0..r.length-1
         if r[i] == 0.0
           reversed.push(nombre_cero[counter_re])
@@ -196,9 +196,9 @@ class HistoriaAcademica < ApplicationRecord
       arri['nombre'] = reversed.compact
       arri
 
-    elsif sort == "porcentajes"
+    elsif sort == "promedio"
       s = porcentaje.sort()
-      arri['porcentaje'] = s
+      arri['promedio'] = s
       for i in 0..s.length-1
         if s[i] == 0.0
           sorted.push(nombre_cero[counter_so])
@@ -211,7 +211,7 @@ class HistoriaAcademica < ApplicationRecord
       arri
     else
       arri['nombre'] = nombre.compact
-      arri['porcentaje'] = porcentaje.compact
+      arri['promedio'] = porcentaje.compact
       arri
     end
   end
