@@ -45,7 +45,7 @@ class Area < ApplicationRecord
         p.push( Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i-1] ,carrera))
      end
 
-		 if p.push(self.joins(:asignaturas).where(asignaturas:{area_id:areas_carrera[i-1]}).distinct.pluck("nombre")[0]).nil?
+		 if p.push(Area.joins(:asignaturas).where(asignaturas:{area_id:areas_carrera[i-1]}).distinct.pluck("nombre")[0]).nil?
      else
        nombre.push(p[1])
 			 porcentaje.push(p[0])

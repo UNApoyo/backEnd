@@ -39,8 +39,8 @@ class HistoriaAcademicasController < ApplicationController
   end
 
   def promedioArea
-    @pro_area = HistoriaAcademica.promedio_area(params[:area])
-    if @pro_area < 0
+    @pro_area = HistoriaAcademica.all_promedio_area(params[:estudiante_id],params[:carrera_id],params[:sort])
+    if @pro_area.nil?
       render json:
         { data:
             {
@@ -53,8 +53,8 @@ class HistoriaAcademicasController < ApplicationController
   end
 
   def promedioTipologia
-    @pro_tipologia = HistoriaAcademica.promedio_tipologia(params[:tipologia])
-    if @pro_tipologia < 0
+    @pro_tipologia = HistoriaAcademica.all_promedio_tipologia(params[:estudiante_id],params[:sort])
+    if @pro_tipologia.nil?
       render json:
         { data:
             {

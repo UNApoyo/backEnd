@@ -51,7 +51,100 @@ class HistoriaAcademica < ApplicationRecord
   end
 
 
+  def self.all_promedio_tipologia(estudiante,sort)
 
+      dict = {}
+      arri = {}
+      tip_cero = Array.new
+      tipologia = Array.new
+      porcentaje = Array.new
+      reversed = Array.new
+      sorted = Array.new
+      preversed = Array.new
+      psorted = Array.new
+      rcounter = 0
+      scounter = 0
+
+      fundamentacion = HistoriaAcademica.promedio_tipologia('Fundamentacion',estudiante)
+      print(fundamentacion)
+      libre = HistoriaAcademica.promedio_tipologia('Libre',estudiante)
+      print(libre)
+      disciplinar = HistoriaAcademica.promedio_tipologia('Disciplinar',estudiante)
+      print(disciplinar)
+
+      if libre == 0.0
+        tip_cero.push('libre')
+      end
+
+      if fundamentacion == 0.0
+        tip_cero.push('fundamentacion')
+      end
+
+      if disciplinar == 0.0
+        tip_cero.push('disciplinar')
+      end
+
+      arri['Fundamentacion'] = fundamentacion
+      arri['Disciplinar'] = disciplinar
+      arri['Libre'] = libre
+
+      porcentaje.push(fundamentacion)
+      porcentaje.push(disciplinar)
+      porcentaje.push(libre)
+
+      tipologia.push('Fundamentacion')
+      tipologia.push('Disciplinar')
+      tipologia.push('Libre')
+
+      if sort == '-tipologia'
+        rt = tipologia.sort().reverse
+        dict['tipologia'] = rt
+        for i in 0..2
+          reversed.push(arri[rt[i]])
+        end
+        dict['porcentaje'] = reversed
+        dict
+      elsif sort == 'tipologia'
+        rt = tipologia.sort()
+        dict['tipologia'] = rt
+        for i in 0..2
+          sorted.push(arri[rt[i]])
+        end
+        dict['porcentaje'] = sorted
+        dict
+      elsif sort == '-porcentajes'
+        rt = porcentaje.sort().reverse
+        dict['porcentaje'] = rt
+        for i in 0..2
+          if rt[i] == 0.0
+            preversed.push(tip_cero[rcounter])
+            rcounter = rcounter + 1
+          else
+            preversed.push(arri.key(rt[i]))
+          end
+        end
+        dict['tipologia'] = preversed
+        dict
+      elsif sort == 'porcentajes'
+        rt = porcentaje.sort()
+        dict['porcentaje'] = rt
+        for i in 0..2
+          if rt[i] == 0.0
+            psorted.push(tip_cero[scounter])
+            scounter = scounter + 1
+          else
+            psorted.push(arri.key(rt[i]))
+          end
+        end
+        dict['tipologia'] = psorted
+        dict
+      else
+        dict['tipologia'] = tipologia
+        dict['porcentaje'] = porcentaje
+        dict
+      end
+
+  end
 
 
   def self.all_promedio_area(estudiante,carrera,sort)
@@ -71,13 +164,13 @@ class HistoriaAcademica < ApplicationRecord
    for i in 1..num_areas
      p = Array.new
 
-     if self.promedio_area(estudiante, areas_carrera[i-1] ) == -1
+     if HistoriaAcademica.promedio_area(areas_carrera[i-1],estudiante) == 0.0
         p.push(0.0)
      else
-        p.push( Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i-1] ,carrera))
+        p.push(HistoriaAcademica.promedio_area(areas_carrera[i-1],estudiante))
      end
 
-     if p.push(self.joins(:asignaturas).where(asignaturas:{area_id:areas_carrera[i-1]}).distinct.pluck("nombre")[0]).nil?
+     if p.push(Area.joins(:asignaturas).where(asignaturas:{area_id:areas_carrera[i-1]}).distinct.pluck("nombre")[0]).nil?
      else
        nombre.push(p[1])
        porcentaje.push(p[0])

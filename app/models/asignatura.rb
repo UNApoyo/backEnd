@@ -109,9 +109,9 @@ class Asignatura < ApplicationRecord
       rcounter = 0
       scounter = 0
 
-      fundamentacion = Asignatura.porcentaje_estudiante_tipologia(estudiante,carrera,'Fundamentacion')
-      libre = Asignatura.porcentaje_estudiante_tipologia(estudiante,carrera,'Libre')
-      disciplinar = Asignatura.porcentaje_estudiante_tipologia(estudiante,carrera,'Disciplinar')
+      fundamentacion = Asignatura.porcentaje_estudiante_tipologia(estudiante,'Fundamentacion',carrera)
+      libre = Asignatura.porcentaje_estudiante_tipologia(estudiante,'Libre',carrera)
+      disciplinar = Asignatura.porcentaje_estudiante_tipologia(estudiante,'Disciplinar',carrera)
 
       if libre == -1
         libre = 0.0
