@@ -30,6 +30,7 @@ class Area < ApplicationRecord
 	 counter_so = 0
 	 dict = {}
 	 arri = {}
+	 arreglo = Array.new
 	 nombre = Array.new
 	 porcentaje = Array.new
 	 nombre_cero = Array.new
@@ -69,7 +70,7 @@ class Area < ApplicationRecord
 				end
 			end
 			arri['nombre'] = reversed.compact
-			arri
+			arreglo.push(arri)
 
 		elsif sort == "porcentajes"
 			s = porcentaje.sort()
@@ -87,7 +88,7 @@ class Area < ApplicationRecord
 		else
 			arri['nombre'] = nombre.compact
 			arri['porcentaje'] = porcentaje.compact
-			arri
+			arreglo.push(arri)
 		end
  end
 

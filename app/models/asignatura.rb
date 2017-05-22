@@ -1,4 +1,5 @@
 class Asignatura < ApplicationRecord
+
   has_many :requisito_asignaturas, dependent: :destroy
   has_many :prerequisitos, through: :requisito_asignaturas
   has_many :enfoque_asignaturas, dependent: :destroy
@@ -70,6 +71,7 @@ class Asignatura < ApplicationRecord
 	   dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{tipologia: tipologia}).count
      if dem > 0.0
        res = num.to_f/dem.to_f * 100
+       res = "%4.2f" % res
     else
       res = -1
     end
@@ -80,6 +82,7 @@ class Asignatura < ApplicationRecord
 	    dem = self.joins(:carrera_asignaturas).where(carrera_asignaturas: {carrera_id: carrera},asignaturas:{area_id: area}).count
       if dem > 0.0
         res = num.to_f/dem.to_f * 100
+        res = "%4.2f" % res
       else
         res = -1
       end

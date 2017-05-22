@@ -35,6 +35,7 @@ class HistoriaAcademica < ApplicationRecord
     num = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia},historia_academicas: {estudiante_id: estudiante}).count
     if num > 0.0
       res = sum.to_f/num.to_f
+      res = "%4.2f" % res
     else
      res = 0.0
    end
@@ -45,6 +46,7 @@ class HistoriaAcademica < ApplicationRecord
     num = self.includes(:asignatura).select("calificacion").where(asignaturas: {area_id: area},historia_academicas: {estudiante_id: estudiante}).count
     if num > 0.0
       res = sum.to_f/num.to_f
+      res = "%4.2f" % res
    else
      res = 0.0
    end
