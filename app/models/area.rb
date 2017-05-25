@@ -70,7 +70,7 @@ class Area < ApplicationRecord
 				end
 			end
 			arri['nombre'] = reversed.compact
-			arreglo.push(arri)
+			arri
 
 		elsif sort == "porcentajes"
 			s = porcentaje.sort()
@@ -88,7 +88,7 @@ class Area < ApplicationRecord
 		else
 			arri['nombre'] = nombre.compact
 			arri['porcentaje'] = porcentaje.compact
-			arreglo.push(arri)
+			arri
 		end
  end
 
