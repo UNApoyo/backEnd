@@ -42,6 +42,21 @@ class EstudiantesController < ApplicationController
     @estudiante.destroy
   end
 
+  def leerHistoria
+    @historia = Estudiante.procesar_historia(params[:text])
+    if @historia.nil?
+      render json:
+        {
+          data:
+            {
+                error: "No hay historia"
+            }
+        }
+    else
+      render json:@historia
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_estudiante

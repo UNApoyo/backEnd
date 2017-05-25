@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       get 'porcentaje_tipologia', to: "asignaturas#porcentajeTipologia"
       get 'porcentaje_area', to: "asignaturas#porcentajeArea"
       get 'sugerencia_enfoque', to: "asignaturas#sugerenciaEnfoque"
-      get 'porcentaje', to: "asignaturas#porcentaje" 
+      get 'porcentaje', to: "asignaturas#porcentaje"
 
     end
   end
@@ -44,10 +44,17 @@ Rails.application.routes.draw do
       get 'sugerencia_tesis', to: "trabajo_grados#sugerenciaTrabajoGrado"
     end
   end
+
   resources :areas do
     collection do
       get 'porcentajes', to: "areas#porcentajes"
       get 'get_areas', to: "areas#get_areas"
+    end
+  end
+
+  resources :estudiantes do
+    collection do
+      post 'leer_historia', to: "estudiantes#leerHistoria"
     end
   end
 
