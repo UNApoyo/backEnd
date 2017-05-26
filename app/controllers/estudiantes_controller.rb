@@ -43,12 +43,7 @@ class EstudiantesController < ApplicationController
   end
 
   def leerHistoria
-    a=JSON.parse(params.require(:estudiante).estudiante) rescue ''
-    printf a;
-    b=a.to_s;
-    printf "algo"
-    printf b;
-    @historia = Estudiante.procesar_historia(a)
+    @historia = Estudiante.procesar_historia(params[:text])
     if @historia.nil?
       render json:
         {

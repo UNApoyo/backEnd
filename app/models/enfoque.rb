@@ -16,13 +16,13 @@ class Enfoque < ApplicationRecord
 	 num_areas = Asignatura.includes(:carrera_asignaturas).select(:area_id).where(carrera_asignaturas:{carrera_id:carrera}).distinct.count
 	 areas_carrera = Asignatura.includes(:carrera_asignaturas).where(carrera_asignaturas:{carrera_id:carrera}).select(:area_id).distinct.pluck("area_id")
 
-
+	 dict = {}
 	 #arreglo = Array.new
 	 nombre = Array.new
 	 enfoqueArea = Array.new
 	 enfoque = Array.new
 	 sugerencia = "Los enfoques que te recomendamos son: "
-
+	 arreglo = Array.new
    for i in 0..num_areas-1
 	   if Asignatura.porcentaje_estudiante_area(estudiante, areas_carrera[i], carrera).to_f >= 25
 			 if HistoriaAcademica.promedio_area(areas_carrera[i], estudiante).to_f > 3.7
@@ -44,6 +44,7 @@ class Enfoque < ApplicationRecord
 
 	 if enfoque == []
 		 answer = "No tienes un porcentaje mayor al 70% en cada una de las areas de las materias de tu carrera o el promedio de estas es inferior a 3.7"
+		 dict['sugerencia'] = arreglo.push(answer)
 	 else
 		 for i in 0..enfoque.length
 
@@ -58,7 +59,7 @@ class Enfoque < ApplicationRecord
 				 sugerencia = sugerencia + nombre[j].to_s+", "
 			 end
 		 end
-		 sugerencia
+		dict['sugerencia'] = arreglo.push(sugerencia)
 	 end
  end
 

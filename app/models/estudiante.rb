@@ -13,15 +13,9 @@ class Estudiante < ApplicationRecord
     self.joins(:historia_academicas).select("estudiantes.porcentaje_carrera").where(historia_academicas:{estudiante_id: estudiante}).uniq.pluck("porcentaje_carrera")
   end
 
+
   def self.procesar_historia(texto)
-    #textjson = JSON.parse(texto) rescue ''
-    #textjson["_json"]
-    #printf textjson
-    a= texto.to_s.length
-  end
-
-  def self.procesarhistoria(texto)
-
+    texto=texto.to_s
     reng = texto.split("\n")
     n = reng.length - 28
     #materias
@@ -67,13 +61,15 @@ class Estudiante < ApplicationRecord
                       creditos_pendientes:pendientes,
                       carrera_id:idc)
     ide = Estudiante.last.id
-    m = materias.length
+    m = materias.length-1
     for i in 0..m
-      ida = Asignatura.select("id").where(asignaturas: {codigo: materias[0][0]}).sum("id")
-      if ida > 0
-        HistoriaAcademica.create(calificacion:materias[0][1],
+      if materias[i][0].length>1
+        ida = Asignatura.select("id").where(asignaturas: {codigo: materias[i][0].to_f}).sum("id")
+        if ida > 0
+          HistoriaAcademica.create(calificacion:materias[i][1].to_f,
                             asignatura_id:ida,
                             estudiante_id:ide)
+        end
       end
     end
     ide

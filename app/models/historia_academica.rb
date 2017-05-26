@@ -34,7 +34,7 @@ class HistoriaAcademica < ApplicationRecord
     sum = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia},historia_academicas: {estudiante_id: estudiante}).sum("calificacion")
     num = self.includes(:asignatura).select("calificacion").where(asignaturas: {tipologia: tipologia},historia_academicas: {estudiante_id: estudiante}).count
     if num > 0.0
-      res = sum.to_f/num.to_f
+      res = sum.to_f/(num+1).to_f
       res = "%4.2f" % res
     else
      res = 0.0
@@ -225,22 +225,28 @@ def self.trabajo_grado(estudiante,carrera)
   promDi = HistoriaAcademica.promedio_tipologia('Disciplinar',estudiante).to_f
 
   total = ((fundamentacion + libre + disciplinar)/3).to_f
-
+  dict = {}
+  arreglo = Array.new
   encabezado = "¡¡Tienes un porcentaje mayor o igual al 70%!! Te recomendamos realizar "
   sugerencia = ""
+
 
   if total >= 70
     if promFun >= 3 && promFun < 3.5 && promDi >= 3 && promDi < 3.5
       sugerencia = encabezado + "MAPI para subir tu PAPA y profundizar en temas de tu carrera"
+      dict['sugerencia'] = arreglo.push(sugerencia)
     elsif promFun >= 3.5 && promFun < 4 && promDi >= 3.5 && promDi < 4
       sugerencia = encabezado + " Pasantia y vincularte con una empresa para ganar experiencia laboral"
+        dict['sugerencia'] = arreglo.push(sugerencia)
     elsif promFun >= 4 && promDi >= 4
       sugerencia = encabezado + "Tesis para seguir obteniendo conocimiento"
+        dict['sugerencia'] = arreglo.push(sugerencia)
     end
   else
     rest = 70 - total
     rest = "%4.2f" % rest
     comentario = "Te falta: "+rest.to_s+"% para poder realizar cualquiera de las tres modalidades de trabajo de grado. Informate acerca de Tesis, Pasantia y MAPI"
+    dict['sugerencia'] = arreglo.push(comentario)
 
   end
 
