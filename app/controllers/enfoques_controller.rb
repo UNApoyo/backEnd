@@ -39,7 +39,7 @@ class EnfoquesController < ApplicationController
   end
 
   def enfoqueAsignatura
-    @enfAsig = asignaturas_enfoque(params[:estudiante_id],params[:carrera_id])
+    @enfAsig = Enfoque.asignaturas_enfoque(params[:estudiante_id],params[:carrera_id])
     if @enfAsig == ""
       render json:
         { data:
@@ -51,7 +51,7 @@ class EnfoquesController < ApplicationController
       render json: @enfAsig
     end
 
-    end
+
 
   end
 

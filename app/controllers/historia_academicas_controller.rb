@@ -97,7 +97,7 @@ class HistoriaAcademicasController < ApplicationController
   end
 
   def sugerenciaGrado
-    @sugGrado =  trabajo_grado(params[:estudiante_id],params[:carrera_id],params[:sort])
+    @sugGrado =  HistoriaAcademica.trabajo_grado(params[:estudiante_id],params[:carrera_id])
     if @sugGrado.nil?
       render json:
       {
