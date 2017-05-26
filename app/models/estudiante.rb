@@ -14,6 +14,13 @@ class Estudiante < ApplicationRecord
   end
 
   def self.procesar_historia(texto)
+    #textjson = JSON.parse(texto) rescue ''
+    #textjson["_json"]
+    #printf textjson
+    a= texto.to_s.length
+  end
+
+  def self.procesarhistoria(texto)
 
     reng = texto.split("\n")
     n = reng.length - 28
