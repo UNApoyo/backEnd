@@ -152,6 +152,17 @@ CarreraAsignatura.create(carrera_id:4,asignatura_id:7)
 CarreraInvestigacion.create(carrera_id:1,grupo_investigacion_id:1)
 
 EnfoqueAsignatura.create(enfoque_id:1,asignatura_id:1)
+EnfoqueAsignatura.create(enfoque_id:2,asignatura_id:2)
+EnfoqueAsignatura.create(enfoque_id:3,asignatura_id:3)
+EnfoqueAsignatura.create(enfoque_id:4,asignatura_id:4)
+EnfoqueAsignatura.create(enfoque_id:5,asignatura_id:5)
+EnfoqueAsignatura.create(enfoque_id:6,asignatura_id:6)
+EnfoqueAsignatura.create(enfoque_id:7,asignatura_id:7)
+EnfoqueAsignatura.create(enfoque_id:8,asignatura_id:8)
+EnfoqueAsignatura.create(enfoque_id:9,asignatura_id:9)
+EnfoqueAsignatura.create(enfoque_id:10,asignatura_id:10)
+EnfoqueAsignatura.create(enfoque_id:11,asignatura_id:11)
+EnfoqueAsignatura.create(enfoque_id:12,asignatura_id:12)
 
 TrabajoGrado.create(nombre:'un trabajitogrado',carrera_id:3)
 

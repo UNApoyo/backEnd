@@ -149,7 +149,7 @@ class HistoriaAcademica < ApplicationRecord
   def self.all_promedio_area(estudiante,carrera,sort)
    num_areas = Asignatura.includes(:carrera_asignaturas).select(:area_id).where(carrera_asignaturas:{carrera_id:carrera}).distinct.count
    areas_carrera = Asignatura.includes(:carrera_asignaturas).where(carrera_asignaturas:{carrera_id:carrera}).select(:area_id).distinct.pluck("area_id")
-   print(sort)
+
    counter_re = 0
    counter_so = 0
    dict = {}
@@ -215,7 +215,7 @@ class HistoriaAcademica < ApplicationRecord
     end
   end
 
-def trabajo_grado(estudiante,carrera,sort)
+def self.trabajo_grado(estudiante,carrera)
   fundamentacion = Asignatura.porcentaje_estudiante_tipologia(estudiante,'Fundamentacion',carrera).to_f
   libre = Asignatura.porcentaje_estudiante_tipologia(estudiante,'Libre',carrera).to_f
   disciplinar = Asignatura.porcentaje_estudiante_tipologia(estudiante,'Disciplinar',carrera).to_f
@@ -224,7 +224,7 @@ def trabajo_grado(estudiante,carrera,sort)
   promLi = HistoriaAcademica.promedio_tipologia('Libre',estudiante).to_f
   promDi = HistoriaAcademica.promedio_tipologia('Disciplinar',estudiante).to_f
 
-  total = fundamentacion + libre + disciplinar
+  total = ((fundamentacion + libre + disciplinar)/3).to_f
 
   encabezado = "¡¡Tienes un porcentaje mayor o igual al 70%!! Te recomendamos realizar "
   sugerencia = ""
@@ -239,7 +239,9 @@ def trabajo_grado(estudiante,carrera,sort)
     end
   else
     rest = 70 - total
-    comentario = "Te falta: "+rest+"% para poder realizar caulquiera de las tres modalidades de trabajo de grado. Informate acerca de Tesis, Pasantia y MAPI"
+    rest = "%4.2f" % rest
+    comentario = "Te falta: "+rest.to_s+"% para poder realizar cualquiera de las tres modalidades de trabajo de grado. Informate acerca de Tesis, Pasantia y MAPI"
+
   end
 
 end

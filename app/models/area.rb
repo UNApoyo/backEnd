@@ -30,7 +30,7 @@ class Area < ApplicationRecord
 	 counter_so = 0
 	 dict = {}
 	 arri = {}
-	 arreglo = Array.new
+	 #arreglo = Array.new
 	 nombre = Array.new
 	 porcentaje = Array.new
 	 nombre_cero = Array.new
