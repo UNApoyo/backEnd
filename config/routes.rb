@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get 'promedio_tipologia', to: "historia_academicas#promedioTipologia"
       get 'best_calificacion', to: "historia_academicas#bestCalificacion"
       get 'worst_calificacion', to: "historia_academicas#worstCalificacion"
+      get 'sugerencia_grado', to: "historia_academicas#sugerenciaGrado"
     end
   end
 

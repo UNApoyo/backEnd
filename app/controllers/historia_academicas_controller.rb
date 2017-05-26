@@ -40,7 +40,7 @@ class HistoriaAcademicasController < ApplicationController
 
   def promedioArea
     @pro_area = HistoriaAcademica.all_promedio_area(params[:estudiante_id],params[:carrera_id],params[:sort])
-    if @pro_area.nil?
+    if @pro_area == -1
       render json:
         { data:
             {
@@ -93,6 +93,21 @@ class HistoriaAcademicasController < ApplicationController
       }
     else
       render json: @worst
+    end
+  end
+
+  def sugerenciaGrado
+    @sugGrado =  trabajo_grado(params[:estudiante_id],params[:carrera_id],params[:sort])
+    if @sugGrado.nil?
+      render json:
+      {
+        data:
+        {
+          error: "No hay sugerencia"
+        }
+      }
+    else
+      render json: @sugGrado
     end
   end
 

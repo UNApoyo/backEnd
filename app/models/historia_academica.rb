@@ -67,12 +67,9 @@ class HistoriaAcademica < ApplicationRecord
       rcounter = 0
       scounter = 0
 
-      fundamentacion = HistoriaAcademica.promedio_tipologia('Fundamentacion',estudiante)
-      print(fundamentacion)
-      libre = HistoriaAcademica.promedio_tipologia('Libre',estudiante)
-      print(libre)
-      disciplinar = HistoriaAcademica.promedio_tipologia('Disciplinar',estudiante)
-      print(disciplinar)
+      fundamentacion = HistoriaAcademica.promedio_tipologia('Fundamentacion',estudiante).to_f
+      libre = HistoriaAcademica.promedio_tipologia('Libre',estudiante).to_f
+      disciplinar = HistoriaAcademica.promedio_tipologia('Disciplinar',estudiante).to_f
 
       if libre == 0.0
         tip_cero.push('libre')
@@ -152,7 +149,7 @@ class HistoriaAcademica < ApplicationRecord
   def self.all_promedio_area(estudiante,carrera,sort)
    num_areas = Asignatura.includes(:carrera_asignaturas).select(:area_id).where(carrera_asignaturas:{carrera_id:carrera}).distinct.count
    areas_carrera = Asignatura.includes(:carrera_asignaturas).where(carrera_asignaturas:{carrera_id:carrera}).select(:area_id).distinct.pluck("area_id")
-
+   print(sort)
    counter_re = 0
    counter_so = 0
    dict = {}
@@ -166,16 +163,16 @@ class HistoriaAcademica < ApplicationRecord
    for i in 1..num_areas
      p = Array.new
 
-     if HistoriaAcademica.promedio_area(areas_carrera[i-1],estudiante) == 0.0
+     if HistoriaAcademica.promedio_area(areas_carrera[i-1],estudiante).to_f == 0.0
         p.push(0.0)
      else
-        p.push(HistoriaAcademica.promedio_area(areas_carrera[i-1],estudiante))
+        p.push(HistoriaAcademica.promedio_area(areas_carrera[i-1],estudiante).to_f)
      end
 
      if p.push(Area.joins(:asignaturas).where(asignaturas:{area_id:areas_carrera[i-1]}).distinct.pluck("nombre")[0]).nil?
      else
        nombre.push(p[1])
-       porcentaje.push(p[0])
+       porcentaje.push(p[0].to_f)
        dict[p[1]] = p[0]
        if p[0] == 0.0
          nombre_cero.push(p[1])
@@ -186,7 +183,7 @@ class HistoriaAcademica < ApplicationRecord
 
     if sort == "-promedio"
       r = porcentaje.sort().reverse
-      arri['promedio'] = r
+      arri['promedios'] = r
       for i in 0..r.length-1
         if r[i] == 0.0
           reversed.push(nombre_cero[counter_re])
@@ -200,7 +197,7 @@ class HistoriaAcademica < ApplicationRecord
 
     elsif sort == "promedio"
       s = porcentaje.sort()
-      arri['promedio'] = s
+      arri['promedios'] = s
       for i in 0..s.length-1
         if s[i] == 0.0
           sorted.push(nombre_cero[counter_so])
@@ -218,7 +215,34 @@ class HistoriaAcademica < ApplicationRecord
     end
   end
 
+def trabajo_grado(estudiante,carrera,sort)
+  fundamentacion = Asignatura.porcentaje_estudiante_tipologia(estudiante,'Fundamentacion',carrera).to_f
+  libre = Asignatura.porcentaje_estudiante_tipologia(estudiante,'Libre',carrera).to_f
+  disciplinar = Asignatura.porcentaje_estudiante_tipologia(estudiante,'Disciplinar',carrera).to_f
 
+  promFun = HistoriaAcademica.promedio_tipologia('Fundamentacion',estudiante).to_f
+  promLi = HistoriaAcademica.promedio_tipologia('Libre',estudiante).to_f
+  promDi = HistoriaAcademica.promedio_tipologia('Disciplinar',estudiante).to_f
+
+  total = fundamentacion + libre + disciplinar
+
+  encabezado = "¡¡Tienes un porcentaje mayor o igual al 70%!! Te recomendamos realizar "
+  sugerencia = ""
+
+  if total >= 70
+    if promFun >= 3 && promFun < 3.5 && promDi >= 3 && promDi < 3.5
+      sugerencia = encabezado + "MAPI para subir tu PAPA y profundizar en temas de tu carrera"
+    elsif promFun >= 3.5 && promFun < 4 && promDi >= 3.5 && promDi < 4
+      sugerencia = encabezado + " Pasantia y vincularte con una empresa para ganar experiencia laboral"
+    elsif promFun >= 4 && promDi >= 4
+      sugerencia = encabezado + "Tesis para seguir obteniendo conocimiento"
+    end
+  else
+    rest = 70 - total
+    comentario = "Te falta: "+rest+"% para poder realizar caulquiera de las tres modalidades de trabajo de grado. Informate acerca de Tesis, Pasantia y MAPI"
+  end
+
+end
 
 
 
