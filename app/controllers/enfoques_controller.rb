@@ -38,6 +38,23 @@ class EnfoquesController < ApplicationController
     @enfoque.destroy
   end
 
+  def enfoqueAsignatura
+    @enfAsig = asignaturas_enfoque(params[:estudiante_id],params[:carrera_id])
+    if @enfAsig == ""
+      render json:
+        { data:
+            {
+                error: "No hay sugerencia para el enfoque de la asignatura"
+              }
+        }
+    else
+      render json: @enfAsig
+    end
+
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enfoque

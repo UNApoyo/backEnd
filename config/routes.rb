@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :profesors
   #resources :trabajo_grados
   resources :enfoque_asignaturas
-  resources :enfoques
+  #resources :enfoques
   #resources :asignaturas
   resources :prerequisitos
 
@@ -58,5 +58,12 @@ Rails.application.routes.draw do
       post 'leer_historia', to: "estudiantes#leerHistoria"
     end
   end
+
+  resources :enfoques do
+    collection do
+      get 'enfoque_asignatura', to: "enfoques#enfoqueAsignatura"
+    end
+  end
+
 
 end
